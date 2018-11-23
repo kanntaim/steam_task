@@ -8,9 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Waiter {
-     public static void wait(WebDriver driver, WebElement element, long timeout, long poll){
-        wait = new FluentWait(driver.getDriver())
-                .withTimeout(Duration.ofSeconds(timeout))
-                .pollingEvery(Duration.ofSeconds(timeout))
+     public static void wait(WebDriver driver, WebElement element, long timeoutMillis, long pollingEveryMillis){
+        FluentWait wait = new FluentWait(driver.getDriver())
+                .withTimeout(Duration.ofMillis(timeoutMillis))
+                .pollingEvery(Duration.ofMillis(pollingEveryMillis));
+
     }
 }
