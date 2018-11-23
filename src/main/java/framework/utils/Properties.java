@@ -4,58 +4,37 @@ import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Locale;
 
 public class Properties {
     private static Properties ourInstance = new Properties();
-    Configurations configs = new Configurations();
-try
-    {
-        Configuration config = configs.properties(new File("config.properties"));
-        // access configuration properties
-    }
-catch (
-    ConfigurationException cex)
-    {
-        // Something went wrong
-    }
+    private Configuration config;
+
 
     private String url;
     private String webdriverPath;
     private String webdriverName;
     private String browserName;
-    private String language;
+    private Locale language;
 
     private Properties() {
-        String propertiesPath = System.getProperty("propertiesFilePath");
-        try (BufferedReader propertyReader = new BufferedReader(new FileReader(propertiesPath))) {
-            String line;
-            while ((line = propertyReader.readLine()) != null) {
-                String[] property = line.split("=");
-                String propertyName = property[0];
-                String propertyValue = property[1];
-                switch (propertyName) {
-                    case "url":
-                        url = propertyValue;
-                        break;
-                    case "webdriverPath":
-                        webdriverPath = propertyValue;
-                        break;
-                    case "webdriverName":
-                        webdriverName = propertyValue;
-                        break;
-                    case "browserName":
-                        browserName = propertyValue;
-                        break;
-                    case "language":
-                        language = propertyValue;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        Configurations configs = new Configurations();
+        try {
+            String propertiesPath = System.getProperty("propertiesFilePath");
+            config = configs.properties(new File(propertiesPath));
+        } catch (ConfigurationException cex) {
+            cex.printStackTrace();
+        }
+        if(config!=null) {
+            url = config.getString("url");
+            webdriverPath = config.getString("webdriverPath");
+            webdriverName = config.getString("webdriverName");
+            browserName = config.getString("browserName");
+            language = new Locale(config.getString("language"));
+        }
+        else {
+            System.out.println("Couldn't read configurations");
         }
     }
 
@@ -79,6 +58,8 @@ catch (
         return browserName;
     }
 
-    public String getLanguage(){return language;}
+    public Locale getLanguage() {
+        return language;
+    }
 
 }

@@ -1,4 +1,4 @@
-package forms;
+package elements;
 
 import elements.BaseElement;
 import org.openqa.selenium.By;

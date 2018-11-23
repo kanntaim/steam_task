@@ -76,7 +76,7 @@
                                     <!--suppress UnresolvedMavenProperty -->
                                     <propertyFilePath>${propertiesFilePath}</propertyFilePath>
                                     <!--suppress UnresolvedMavenProperty -->
-                                    <csvFileToSave>${csvFileToSave}</csvFileToSave>
+                                    <localePropertiesDirectoryPath>${localePropertiesDirectoryPath}</localePropertiesDirectoryPath>
                                 </systemPropertyVariables>
                                 <suiteXmlFiles>
                                     <!--suppress UnresolvedMavenProperty -->

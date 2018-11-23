@@ -1,4 +1,4 @@
-package forms;
+package elements;
 
 public class Menu {
 }
