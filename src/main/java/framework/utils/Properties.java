@@ -1,11 +1,27 @@
 package framework.utils;
 
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.ex.ConfigurationException;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Properties {
     private static Properties ourInstance = new Properties();
+    Configurations configs = new Configurations();
+try
+    {
+        Configuration config = configs.properties(new File("config.properties"));
+        // access configuration properties
+    }
+catch (
+    ConfigurationException cex)
+    {
+        // Something went wrong
+    }
 
     private String url;
     private String webdriverPath;
