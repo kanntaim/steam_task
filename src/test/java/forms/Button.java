@@ -1,12 +1,16 @@
 package forms;
 
+import elements.BaseElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-public class Button {
-    private
+public class Button extends BaseElement {
 
     public Button(By locator){
-        WebElement = 
+        super(locator);
     }
+
+    public Button(String xpath){
+        this(By.xpath(xpath));
+    }
+
 }
