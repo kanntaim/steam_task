@@ -1,11 +1,11 @@
 package elements;
 
-import framework.drivers.WebDriver;
 import org.openqa.selenium.By;
 
 public class Button extends BaseElement {
 
     public Button(By locator) {
+
         super(locator);
     }
 
@@ -13,6 +13,8 @@ public class Button extends BaseElement {
         this(By.xpath(xpath));
     }
 
-
+    public void clickAndWait(){
+        super.
+    }
 
 }

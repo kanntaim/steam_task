@@ -9,8 +9,10 @@ import org.openqa.selenium.remote.RemoteWebElement;
 public class BaseElement {
     private WebElement webElement;
     private WebDriver driver;
+    private By locator;
 
     public BaseElement(By locator) {
+        this.locator = locator;
         driver = WebDriver.getInstance();
         webElement = driver.findElement(locator);
     }
@@ -19,17 +21,19 @@ public class BaseElement {
         this(By.xpath(xpath));
     }
 
-    public void click() {
+    public void clickAndWait(WebElement ) {
         WebDriver driver = WebDriver.getInstance();
 
         webElement.click();
     }
 
+    public By getLocator(){
+        return locator;
+    }
+
     public RemoteWebElement getElement()
 
     public boolean isEnabled()
-
-    public By getLocator()
 
     public String getName()
 
