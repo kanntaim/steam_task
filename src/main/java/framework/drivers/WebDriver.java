@@ -11,10 +11,13 @@ import java.util.List;
 
 public class WebDriver {
 
-    private static WebDriver ourInstance = new WebDriver();
+    private static WebDriver ourInstance = null;
     private org.openqa.selenium.WebDriver driver;
 
     private WebDriver() {
+        if (ourInstance == null) {
+            ourInstance = new WebDriver();
+        }
         Properties properties = Properties.getInstance();
         String browserName = properties.getBrowserName();
         switch (browserName) {
