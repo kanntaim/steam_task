@@ -13,8 +13,8 @@ public class Button extends BaseElement {
         this(By.xpath(xpath));
     }
 
-    public void clickAndWait(BaseElement waitFor, long timeout, long pollingRate){
-        super.clickAndWait( waitFor, timeout, pollingRate);
+    public void clickAndWait(BaseElement waitFor, long timeout, long pollingRate) {
+        super.clickAndWait(waitFor, timeout, pollingRate);
     }
 
 }

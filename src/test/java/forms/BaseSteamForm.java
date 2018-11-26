@@ -10,21 +10,26 @@ public class BaseSteamForm {
     private Button btnInstallSteam = setBtnInstallSteam();
     private ComboBox cmbLanguage;
 
-    public BaseSteamForm(){
+    public BaseSteamForm() {
 
     }
 
-    private Button setBtnInstallSteam(){
+    private Button setBtnInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getButtonInstall();
-        String buttonXpath = String.format("//a[contains(text(),\"%s\")]",buttonText);
+        String buttonXpath = String.format("//a[contains(text(),\"%s\")]", buttonText);
         return new Button(buttonXpath);
     }
 
-    private ComboBox setCmbLanguage(){
+    private ComboBox setCmbLanguage() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
-        String buttonText = languageProperties.getButtonInstall();
-
+        String comboboxText = languageProperties.getComboboxLanguage();
+        String comboboxXpath = String.format("//span[contains(text(),\"%s\")]", comboboxText);
+        return new ComboBox(comboboxXpath);
     }
 
+    public void clickBtnInstallSteam() {
+        InstallSteamForm installSteamForm = new InstallSteamForm();
+        btnInstallSteam.clickAndWait(installSteamForm.getBtnInstallSteam(), 10000, 600);
+    }
 }

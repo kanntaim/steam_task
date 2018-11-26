@@ -26,14 +26,13 @@ public class Properties {
         } catch (ConfigurationException cex) {
             cex.printStackTrace();
         }
-        if(config!=null) {
+        if (config != null) {
             url = config.getString("url");
             webdriverPath = config.getString("webdriverPath");
             webdriverName = config.getString("webdriverName");
             browserName = config.getString("browserName");
             language = new Locale(config.getString("language"));
-        }
-        else {
+        } else {
             System.out.println("Couldn't read configurations");
         }
     }

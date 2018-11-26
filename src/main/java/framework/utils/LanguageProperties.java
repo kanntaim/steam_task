@@ -14,13 +14,13 @@ public class LanguageProperties {
 
     private ResourceBundle config;
 
-    public static LanguageProperties getInstance() {
-        return ourInstance;
-    }
-
     private LanguageProperties() {
         Properties properties = Properties.getInstance();
         setConfig(properties.getLanguage());
+    }
+
+    public static LanguageProperties getInstance() {
+        return ourInstance;
     }
 
     public void setConfig(Locale locale) {
@@ -32,11 +32,6 @@ public class LanguageProperties {
             config = ResourceBundle.getBundle("steam", locale, loader);
         } catch (IOException | MissingResourceException e) {
             e.printStackTrace();
-        }
-        if (config != null) {
-
-        } else {
-            System.out.println("Couldn't read locale configurations");
         }
     }
 

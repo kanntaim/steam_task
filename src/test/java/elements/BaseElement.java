@@ -3,9 +3,7 @@ package elements;
 import framework.drivers.WebDriver;
 import framework.utils.Waiter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 
 public abstract class BaseElement {
     private WebElement webElement;
@@ -24,13 +22,13 @@ public abstract class BaseElement {
 
     public void clickAndWait(BaseElement waitFor, long timeout, long pollingRate) {
         WebDriver driver = WebDriver.getInstance();
-        Waiter.wait(locator,timeout,pollingRate);
+        Waiter.wait(locator, timeout, pollingRate);
         webElement.click();
         By locator = waitFor.getLocator();
-        Waiter.wait(locator,timeout,pollingRate);
+        Waiter.wait(locator, timeout, pollingRate);
     }
 
-    public By getLocator(){
+    public By getLocator() {
         return locator;
     }
 
