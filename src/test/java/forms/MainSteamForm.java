@@ -1,6 +1,5 @@
 package forms;
 
-import elements.ComboBox;
 import elements.Menu;
 import org.openqa.selenium.By;
 

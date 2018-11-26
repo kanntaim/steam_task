@@ -39,7 +39,7 @@ public class BaseSteamForm {
         cmbLanguage.click(10000, 600);
     }
 
-
+//TODO isPageOpen, baseElementList, forms list
     public void setLocale(Locale locale) {
         String localeLanguage = locale.getLanguage();
         String language;
