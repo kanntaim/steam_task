@@ -15,9 +15,7 @@ public class WebDriver {
     private org.openqa.selenium.WebDriver driver;
 
     private WebDriver() {
-        if (ourInstance == null) {
-            ourInstance = new WebDriver();
-        }
+        ourInstance = this;
         Properties properties = Properties.getInstance();
         String browserName = properties.getBrowserName();
         switch (browserName) {
@@ -30,6 +28,9 @@ public class WebDriver {
     }
 
     public static WebDriver getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new WebDriver();
+        }
         return ourInstance;
     }
 

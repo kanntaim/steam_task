@@ -4,6 +4,7 @@ import framework.drivers.WebDriver;
 import framework.utils.Waiter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public abstract class BaseElement {
     private WebElement webElement;
@@ -13,19 +14,41 @@ public abstract class BaseElement {
     public BaseElement(By locator) {
         this.locator = locator;
         driver = WebDriver.getInstance();
-        webElement = driver.findElement(locator);
+        webElement = null;
+    }
+    public BaseElement(WebElement element) {
+        locator = null;
+        driver = WebDriver.getInstance();
+        webElement = element;
     }
 
     public BaseElement(String xpath) {
         this(By.xpath(xpath));
     }
 
-    public void clickAndWait(BaseElement waitFor, long timeout, long pollingRate) {
-        WebDriver driver = WebDriver.getInstance();
-        Waiter.wait(locator, timeout, pollingRate);
+    public void click(long timeout, long pollingRate) {
+        if (locator !=null){
+            Waiter.wait(locator, timeout, pollingRate);
+            webElement = driver.findElement(locator);
+        }
         webElement.click();
-        By locator = waitFor.getLocator();
-        Waiter.wait(locator, timeout, pollingRate);
+    }
+
+    public void moveAndClick(long timeout, long pollingRate){
+        if (locator !=null){
+            Waiter.wait(locator, timeout, pollingRate);
+            webElement = driver.findElement(locator);
+        }
+        Actions actions = new Actions(driver.getDriver());
+        actions.moveToElement(webElement).click().perform();
+    }
+
+    public String getText(long timeout, long pollingRate){
+        if (locator !=null){
+            Waiter.wait(locator, timeout, pollingRate);
+            webElement = driver.findElement(locator);
+        }
+        return webElement.getText();
     }
 
     public By getLocator() {

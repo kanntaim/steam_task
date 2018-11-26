@@ -3,12 +3,16 @@ package forms;
 import elements.Button;
 import elements.ComboBox;
 import framework.utils.LanguageProperties;
+import org.openqa.selenium.By;
+
+import java.util.List;
+import java.util.Locale;
 
 
 public class BaseSteamForm {
 
     private Button btnInstallSteam = setBtnInstallSteam();
-    private ComboBox cmbLanguage;
+    private ComboBox cmbLanguage = setCmbLanguage();
 
     public BaseSteamForm() {
 
@@ -22,14 +26,39 @@ public class BaseSteamForm {
     }
 
     private ComboBox setCmbLanguage() {
-        LanguageProperties languageProperties = LanguageProperties.getInstance();
-        String comboboxText = languageProperties.getComboboxLanguage();
-        String comboboxXpath = String.format("//span[contains(text(),\"%s\")]", comboboxText);
-        return new ComboBox(comboboxXpath);
+        String comboboxId = "language_pulldown";
+        String itemsXpath = "//div[@id = \"language_dropdown\"]/descendant::a";
+        return new ComboBox(By.id(comboboxId), By.xpath(itemsXpath));
     }
 
     public void clickBtnInstallSteam() {
-        InstallSteamForm installSteamForm = new InstallSteamForm();
-        btnInstallSteam.clickAndWait(installSteamForm.getBtnInstallSteam(), 10000, 600);
+        btnInstallSteam.click(10000, 600);
+    }
+
+    public void clickCmbLanguage() {
+        cmbLanguage.click(10000, 600);
+    }
+
+    public void setLocale(Locale locale) {
+        String localeLanguage = locale.getLanguage();
+        String language;
+        switch (localeLanguage) {
+            case "ru":
+                language = "Русский";
+                break;
+            case "en":
+                language = "English";
+                break;
+                default:
+                    System.out.println("Wrong locale language");
+                    return;
+        }
+        cmbLanguage.click(10000, 600);
+        List<Button> buttonList = cmbLanguage.getItems();
+        int i = 0;
+        while (!buttonList.get(i).getText(10000, 600).startsWith(language)) {
+            i++;
+        }
+        buttonList.get(i).click(10000, 600);
     }
 }

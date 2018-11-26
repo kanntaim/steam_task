@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ public class LanguageProperties {
     public void setConfig(Locale locale) {
         try {
             String path = System.getProperty("localePropertiesDirectoryPath");
+            path = "C:\\Users\\n.galeev\\IdeaProjects\\steam task\\src\\resources\\locale";
             File file = new File(path);
             URL[] urls = {file.toURI().toURL()};
             ClassLoader loader = new URLClassLoader(urls);
@@ -36,10 +38,14 @@ public class LanguageProperties {
     }
 
     public String getButtonInstall() {
-        return config.getString("buttonInstall");
+        String labelOld = config.getString("buttonInstall");
+        String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+        return labelNew;
     }
 
     public String getComboboxLanguage() {
-        return config.getString("comboboxLanguage");
+        String labelOld = config.getString("comboboxLanguage");
+        String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+        return labelNew;
     }
 }

@@ -1,6 +1,7 @@
 package elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class Button extends BaseElement {
 
@@ -13,8 +14,8 @@ public class Button extends BaseElement {
         this(By.xpath(xpath));
     }
 
-    public void clickAndWait(BaseElement waitFor, long timeout, long pollingRate) {
-        super.clickAndWait(waitFor, timeout, pollingRate);
+    public Button(WebElement element){
+        super(element);
     }
 
 }

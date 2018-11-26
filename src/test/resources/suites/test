@@ -2,7 +2,7 @@
 <suite name="Component Tests" verbose="2" annotations="JDK">
     <test name="test">
         <classes>
-            <class name="cases.TestSteam" />
+            <class name="cases.SteamTest" />
         </classes>
     </test>
 </suite>

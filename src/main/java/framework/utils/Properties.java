@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.Locale;
 
 public class Properties {
-    private static Properties ourInstance = new Properties();
+    private static Properties ourInstance = null;
     private Configuration config;
 
 
@@ -19,11 +19,15 @@ public class Properties {
     private Locale language;
 
     private Properties() {
+        ourInstance = this;
         Configurations configs = new Configurations();
         try {
             String propertiesPath = System.getProperty("propertiesFilePath");
-            config = configs.properties(new File(propertiesPath));
-        } catch (ConfigurationException cex) {
+            propertiesPath = "src/resources/.properties";
+            File propertiesFile = new File(propertiesPath);
+            System.out.println(propertiesFile.isFile());
+            config = configs.properties(propertiesFile);
+        } catch (Throwable cex) {
             cex.printStackTrace();
         }
         if (config != null) {
@@ -38,6 +42,9 @@ public class Properties {
     }
 
     public static Properties getInstance() {
+        if (ourInstance == null){
+            return new Properties();
+        }
         return ourInstance;
     }
 
