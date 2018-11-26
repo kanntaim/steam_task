@@ -39,6 +39,7 @@ public class BaseSteamForm {
         cmbLanguage.click(10000, 600);
     }
 
+
     public void setLocale(Locale locale) {
         String localeLanguage = locale.getLanguage();
         String language;
@@ -49,15 +50,19 @@ public class BaseSteamForm {
             case "en":
                 language = "English";
                 break;
-                default:
-                    System.out.println("Wrong locale language");
-                    return;
+            default:
+                System.out.println("Wrong locale language");
+                return;
         }
         cmbLanguage.click(10000, 600);
         List<Button> buttonList = cmbLanguage.getItems();
         int i = 0;
         while (!buttonList.get(i).getText(10000, 600).startsWith(language)) {
             i++;
+            if (i == buttonList.size()) {
+                cmbLanguage.click(10000, 600);
+                return;
+            }
         }
         buttonList.get(i).click(10000, 600);
     }
