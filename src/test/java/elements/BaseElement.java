@@ -3,6 +3,7 @@ package elements;
 import framework.drivers.WebDriver;
 import framework.utils.Waiter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -32,6 +33,15 @@ public abstract class BaseElement {
             webElement = driver.findElement(locator);
         }
         webElement.click();
+    }
+
+    public void jsClick(long timeout, long pollingRate){
+        if (locator !=null){
+            Waiter.wait(locator, timeout, pollingRate);
+            webElement = driver.findElement(locator);
+        }
+        JavascriptExecutor executor = (JavascriptExecutor)driver.getDriver();
+        executor.executeScript("arguments[0].click();", webElement);
     }
 
     public void moveAndClick(long timeout, long pollingRate){

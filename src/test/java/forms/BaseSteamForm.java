@@ -2,6 +2,7 @@ package forms;
 
 import elements.Button;
 import elements.ComboBox;
+import elements.Menu;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 
@@ -31,7 +32,7 @@ public class BaseSteamForm {
         return new ComboBox(By.id(comboboxId), By.xpath(itemsXpath));
     }
 
-    public void clickBtnInstallSteam() {
+    public void navigateInstallSteam() {
         btnInstallSteam.click(10000, 600);
     }
 
@@ -66,4 +67,6 @@ public class BaseSteamForm {
         }
         buttonList.get(i).click(10000, 600);
     }
+
+
 }

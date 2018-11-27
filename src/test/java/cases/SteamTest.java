@@ -1,7 +1,7 @@
 package cases;
 
 import forms.BaseSteamForm;
-import framework.utils.LanguageProperties;
+import forms.MainSteamForm;
 import framework.utils.Properties;
 import org.testng.annotations.Test;
 
@@ -14,8 +14,10 @@ public class SteamTest extends BaseTest {
     public void test() {
         Properties properties = Properties.getInstance();
         Locale language = properties.getLanguage();
-        BaseSteamForm form = new BaseSteamForm();
-        form.clickBtnInstallSteam();
-        form.setLocale(new Locale("RU"));
+        MainSteamForm form = new MainSteamForm();
+        //form.navigateInstallSteam();
+        //form.setLocale(new Locale("RU"));
+        form.navigateSubmenu(MainSteamForm.MenuItems.GAMES, MainSteamForm.SubmenuItems.ACTIONS);
+        System.out.println("Wasted");
     }
 }

@@ -38,13 +38,15 @@ public class LanguageProperties {
     }
 
     public String getButtonInstall() {
-        String labelOld = config.getString("buttonInstall");
-        String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
-        return labelNew;
+        return getProperty("buttonInstall");
     }
 
     public String getComboboxLanguage() {
-        String labelOld = config.getString("comboboxLanguage");
+        return getProperty("comboboxLanguage");
+    }
+
+    public String getProperty(String key) {
+        String labelOld = config.getString(key);
         String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
         return labelNew;
     }

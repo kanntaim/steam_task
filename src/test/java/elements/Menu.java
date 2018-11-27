@@ -1,37 +1,28 @@
 package elements;
 
-import framework.drivers.WebDriver;
-import framework.utils.Waiter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Menu extends BaseElementList {
 
-public class Menu extends BaseElement {
-    private By submenuLocator;
-    private By submenuItemLocator;
 
-    public Menu(By locator, By submenuLocator, By submenuItemLocator) {
+    private By menuItemLocator;
+    private String submenuItemTemplate;
+
+    public Menu(String xpath, By menuItemLocator, String submenuItemTemplate) {//todo remove if unneeded
+        this(By.xpath(xpath),menuItemLocator,submenuItemTemplate);
+    }
+
+    public Menu(By locator, By menuItemLocator, String submenuItemTemplate) {
         super(locator);
-        this.submenuLocator = submenuLocator;
-        this.submenuItemLocator = submenuItemLocator;
+        this.menuItemLocator = menuItemLocator;
+        this.submenuItemTemplate = submenuItemTemplate;
+    }
 
+    public void clickSubmenuItem(By locator, long timeout, long pollingRate) {//todo enum
 
     }
 
-    public Menu(String xpath, String submenuXpath, String submenuItemXpath) {
-        this(By.xpath(xpath), By.xpath(submenuXpath), By.xpath(submenuItemXpath));
-    }
-
-    public List<ComboBox> getItems() {//todo enum
-        Waiter.wait(submenuLocator, 10000, 600);
-        WebDriver driver = WebDriver.getInstance();
-        List<WebElement> items = driver.findElements(submenuLocator);
-        List<ComboBox> cmbItems = new ArrayList<>(items.size());
-        for (WebElement item : items) {
-            cmbItems.add(new ComboBox(submenuLocator, submenuItemLocator));
-        }
-        return cmbItems;
+    public String getSubmenuItemTemplate() {
+        return submenuItemTemplate;
     }
 }
