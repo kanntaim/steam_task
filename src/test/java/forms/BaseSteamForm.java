@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class BaseSteamForm {
+public class BaseSteamForm extends BaseForm{
 
     private Button btnInstallSteam = setBtnInstallSteam();
     private ComboBox cmbLanguage = setCmbLanguage();

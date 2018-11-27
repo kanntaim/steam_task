@@ -2,7 +2,6 @@ package cases;
 
 import forms.ActionsSteamForm;
 import forms.AgeCheckForm;
-import forms.BaseSteamForm;
 import forms.MainSteamForm;
 import framework.utils.Properties;
 import org.testng.annotations.Test;
@@ -23,11 +22,14 @@ public class SteamTest extends BaseTest {
         form.navigateSubmenu(MainSteamForm.MenuItems.GAMES, MainSteamForm.SubmenuItems.ACTIONS);
         ActionsSteamForm actionsForm = new ActionsSteamForm();
         actionsForm.clickBtnSpecials();
-        actionsForm.navigateMaxDiscountGame();
-        AgeCheckForm ageCheckForm = new AgeCheckForm();
-        Calendar date = Calendar.getInstance();
-        date.set(1995,Calendar.AUGUST,26);
-        ageCheckForm.setDate(date);
+        MainSteamForm undefinedForm = actionsForm.navigateMaxDiscountGame();
+        if (undefinedForm instanceof AgeCheckForm) {
+            Calendar date = Calendar.getInstance();
+            date.set(1986, Calendar.DECEMBER, 19);
+            ((AgeCheckForm) undefinedForm).passAgeCheckForm(date);
+        }
+
+
         System.out.println("stop it");//todo check correct discount values
     }
 }

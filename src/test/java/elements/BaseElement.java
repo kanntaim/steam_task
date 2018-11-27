@@ -29,7 +29,7 @@ public abstract class BaseElement {
 
     public void click(long timeout, long pollingRate) {
         if (locator !=null){
-            Waiter.wait(locator, timeout, pollingRate);
+            Waiter.waitElement(locator, timeout, pollingRate);
             webElement = driver.findElement(locator);
         }
         webElement.click();
@@ -37,7 +37,7 @@ public abstract class BaseElement {
 
     public void jsClick(long timeout, long pollingRate){
         if (locator !=null){
-            Waiter.wait(locator, timeout, pollingRate);
+            Waiter.waitElement(locator, timeout, pollingRate);
             webElement = driver.findElement(locator);
         }
         JavascriptExecutor executor = (JavascriptExecutor)driver.getDriver();
@@ -46,7 +46,7 @@ public abstract class BaseElement {
 
     public void moveAndClick(long timeout, long pollingRate){
         if (locator !=null){
-            Waiter.wait(locator, timeout, pollingRate);
+            Waiter.waitElement(locator, timeout, pollingRate);
             webElement = driver.findElement(locator);
         }
         Actions actions = new Actions(driver.getDriver());
@@ -55,7 +55,7 @@ public abstract class BaseElement {
 
     public String getText(long timeout, long pollingRate){
         if (locator !=null){
-            Waiter.wait(locator, timeout, pollingRate);
+            Waiter.waitElement(locator, timeout, pollingRate);
             webElement = driver.findElement(locator);
         }
         return webElement.getText();

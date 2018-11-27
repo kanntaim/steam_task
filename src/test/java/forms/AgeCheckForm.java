@@ -2,51 +2,35 @@ package forms;
 
 
 import elements.Button;
-import elements.ComboBox;
+import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 public class AgeCheckForm extends MainSteamForm {
-    private ComboBox day = new ComboBox(By.id("ageDay"),By.xpath("//select[@id=\"ageDay\"]/option"));
-    private ComboBox month = new ComboBox(By.id("ageMonth"),By.xpath("//select[@id=\"ageMonth\"]/option"));
-    private ComboBox year = new ComboBox(By.id("ageYear"),By.xpath("//select[@id=\"ageYear\"]/option"));
+    private Button btnViewPage; //todo unhardcode locators, make all Buttons etc. to btnName etc.
 
-    public void setDate(Calendar date){
-        day.click(10000, 600);
-        List<Button> daysList = day.getItems();
-        int i = 0;
-        while (Integer.parseInt(daysList.get(i).getText(10000, 600)) != (date.get(Calendar.DAY_OF_MONTH))) {
-            i++;
-            if (i == daysList.size()) {
-                return;
-            }
-        }
-        daysList.get(i).click(10000, 600);
-        month.click(10000, 600);
+    public AgeCheckForm(){
 
-        List<Button> monthsList = month.getItems();
-        i = 0;
-        while (!monthsList.get(i).getText(10000, 600).equals(date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH))) {
-            i++;
-            if (i == monthsList.size()) {
-                return;
-            }
-        }
-        monthsList.get(i).click(10000, 600);
-
-        year.click(10000, 600);
-        List<Button> yearsList = year.getItems();
-        i = 0;
-        while (Integer.parseInt(yearsList.get(i).getText(10000, 600)) != (date.get(Calendar.YEAR))) {
-            i++;
-            if (i == yearsList.size()) {
-                return;
-            }
-        }
-        System.out.println(yearsList.get(i).getText(10000, 600));
-        yearsList.get(i).click(10000, 600);
     }
+
+    private void setBtnViewPage(){ //todo all setters called on need and return void
+        LanguageProperties languageProperties = LanguageProperties.getInstance();
+        String buttonText = languageProperties.getViewPage();
+        By buttonLocator = By.xpath(String.format("//span[contains(text(),\"%s\")]", buttonText));
+        btnViewPage = new Button(buttonLocator);
+    }
+
+    public void passAgeCheckForm(Calendar date){
+        if (isFormOpen(By.xpath("//select[@id=\"ageDay\"]/option"),10000, 600)){
+            AgeCheckWithDateForm ageCheckWithDateForm = new AgeCheckWithDateForm();
+            ageCheckWithDateForm.setDate(date);
+        }
+        setBtnViewPage();
+        btnViewPage.click(10000,600);//todo (one more) unhardcode timeouts
+    }
+
+
+
+
 }

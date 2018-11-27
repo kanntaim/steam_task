@@ -22,7 +22,7 @@ public class ComboBox extends BaseElement {
     }
 
     public List<Button> getItems() {
-        Waiter.wait(itemsLocator, 10000, 600);
+        Waiter.waitElement(itemsLocator, 10000, 600);
         WebDriver driver = WebDriver.getInstance();
         List<WebElement> items = driver.findElements(itemsLocator);
         List<Button> btnItems = new ArrayList<>(items.size());

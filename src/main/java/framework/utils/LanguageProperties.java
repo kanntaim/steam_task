@@ -49,6 +49,10 @@ public class LanguageProperties {
         return getProperty("seeAllSpecials");
     }
 
+    public String getViewPage() {
+        return getProperty("viewPage");
+    }
+
     public String getProperty(String key) {
         String labelOld = config.getString(key);
         String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
