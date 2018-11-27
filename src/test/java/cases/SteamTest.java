@@ -21,6 +21,7 @@ public class SteamTest extends BaseTest {
         form.navigateSubmenu(MainSteamForm.MenuItems.GAMES, MainSteamForm.SubmenuItems.ACTIONS);
         ActionsSteamForm actionsForm = new ActionsSteamForm();
         actionsForm.clickBtnSpecials();
+        actionsForm.navigateMaxDiscountGame();
         System.out.println("stop it");
     }
 }
