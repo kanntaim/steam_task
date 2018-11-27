@@ -12,18 +12,18 @@ import java.util.Locale;
 
 public class BaseSteamForm extends BaseForm{
 
-    private Button btnInstallSteam = setBtnInstallSteam();
+    private Button btnInstallSteam;
     private ComboBox cmbLanguage = setCmbLanguage();
 
     public BaseSteamForm() {
 
     }
 
-    private Button setBtnInstallSteam() {
+    private void setBtnInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getButtonInstall();
         String buttonXpath = String.format("//a[contains(text(),\"%s\")]", buttonText);
-        return new Button(buttonXpath);
+        btnInstallSteam = new Button(buttonXpath);
     }
 
     private ComboBox setCmbLanguage() {
@@ -33,6 +33,7 @@ public class BaseSteamForm extends BaseForm{
     }
 
     public void navigateInstallSteam() {
+        setBtnInstallSteam();
         btnInstallSteam.click(10000, 600);
     }
 
@@ -40,7 +41,7 @@ public class BaseSteamForm extends BaseForm{
         cmbLanguage.click(10000, 600);
     }
 
-//TODO isPageOpen, baseElementList, forms list
+//TODO forms list
     public void setLocale(Locale locale) {
         String localeLanguage = locale.getLanguage();
         String language;

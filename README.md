@@ -1,3 +1,3 @@
 #steam_task
 maven parameters:
-test -DsuiteXmlFile=suites/ParentSuite.xml -DpropertiesFilePath=src/resources/.properties -DlocalePropertiesDirectoryPath=src/resources/locale
+test -DsuiteXmlFile=src/test/resources/suites/ParentSuite.xml -DpropertiesFilePath=src/resources/.properties -DlocalePropertiesDirectoryPath=src/resources/locale

@@ -5,16 +5,22 @@ import framework.utils.LanguageProperties;
 
 public class InstallSteamForm extends BaseSteamForm {
 
-    private Button btnInstallSteam = setInstallSteam();
+    private Button btnInstallSteam;
 
-    private Button setInstallSteam() {
+    private void setInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getButtonInstall();
         String buttonXpath = String.format("//span[contains(text(),\"%s\")]/ancestor::a", buttonText);
-        return new Button(buttonXpath);
+        btnInstallSteam = new Button(buttonXpath);
     }
 
-    public Button getBtnInstallSteam() {
-        return btnInstallSteam;
+    public void clickBtnInstallSteam() {
+        setInstallSteam();
+        btnInstallSteam.click(10000,600);
+    }
+
+    public void downloadSteam() {
+        clickBtnInstallSteam();
+        System.out.println("nope");
     }
 }

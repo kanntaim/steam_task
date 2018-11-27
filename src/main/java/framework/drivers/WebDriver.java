@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +19,16 @@ public class WebDriver {
         ourInstance = this;
         Properties properties = Properties.getInstance();
         String browserName = properties.getBrowserName();
+        String downloadDir = properties.getBrowserDownloadDirectory();
+        FirefoxOptions options = new FirefoxOptions();
+        options.addPreference("browser.download.dir", downloadDir);
+        options.addPreference("browser.helperApps.neverAsk.saveToDisk",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;");
+        options.addPreference( "browser.download.manager.showWhenStarting", false );
+        options.addPreference( "pdfjs.disabled", true);
         switch (browserName) {
             case "Firefox":
-                driver = new FirefoxDriver();
+                driver = new FirefoxDriver(options);
                 break;
             case "Chrome":
                 driver = new ChromeDriver();

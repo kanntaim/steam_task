@@ -31,7 +31,7 @@ public class Properties {
             cex.printStackTrace();
         }
         if (config != null) {
-            url = config.getString("url");
+            url = config.getString("url");//todo redo fields into methods
             webdriverPath = config.getString("webdriverPath");
             webdriverName = config.getString("webdriverName");
             browserName = config.getString("browserName");
@@ -62,6 +62,10 @@ public class Properties {
 
     public String getBrowserName() {
         return browserName;
+    }
+
+    public String getBrowserDownloadDirectory(){
+        return config.getString("downloadDir");
     }
 
     public Locale getLanguage() {

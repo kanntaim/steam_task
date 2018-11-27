@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 public class LanguageProperties {
 
-    private static LanguageProperties ourInstance = new LanguageProperties();
+    private static LanguageProperties ourInstance;
 
     private ResourceBundle config;
 
@@ -21,13 +21,16 @@ public class LanguageProperties {
     }
 
     public static LanguageProperties getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new LanguageProperties();
+        }
         return ourInstance;
     }
 
     public void setConfig(Locale locale) {
         try {
             String path = System.getProperty("localePropertiesDirectoryPath");
-            path = "C:\\Users\\n.galeev\\IdeaProjects\\steam task\\src\\resources\\locale";
+            path = "C:\\Users\\Имя\\IdeaProjects\\steam_task\\src\\resources\\locale";
             File file = new File(path);
             URL[] urls = {file.toURI().toURL()};
             ClassLoader loader = new URLClassLoader(urls);
@@ -45,7 +48,7 @@ public class LanguageProperties {
         return getProperty("comboboxLanguage");
     }
 
-    public String getSeeAllSpecials(){
+    public String getSeeAllSpecials() {
         return getProperty("seeAllSpecials");
     }
 
