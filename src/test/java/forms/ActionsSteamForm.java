@@ -1,6 +1,7 @@
 package forms;
 
 import elements.Button;
+import elements.Label;
 import elements.LabelsList;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
@@ -10,6 +11,8 @@ import java.util.List;
 public class ActionsSteamForm {
     private Button btnSpecials;
     private LabelsList discounts;
+    private String chosenGameDiscount;
+    private String chosenGamePrice;
 
     private void setBtnSpecials() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
@@ -31,7 +34,10 @@ public class ActionsSteamForm {
         setDiscounts();
         String maxDiscount = getMaxDiscount();
         By maxDiscountGameLocator = By.xpath(String.format("//span[contains(text(),\"%s\")]/ancestor::a",maxDiscount));
+
         Button maxDiscountGame = new Button(maxDiscountGameLocator);
+        String priceLocatorString = String.format("//span[contains(text(),\"%s\")]/ancestor::a//descendant::strike/../..", maxDiscount);
+        setChosenGameParameters(maxDiscount, priceLocatorString);
         maxDiscountGame.click(10000,600);
     }
 
@@ -44,5 +50,13 @@ public class ActionsSteamForm {
         }
         return maxDiscount.toString();
     }
+
+    private void setChosenGameParameters(String chosenGameDiscount, String chosenGamePriceLocatorString){
+        this.chosenGameDiscount = chosenGameDiscount;
+        Label priceLabel = new Label(By.xpath(chosenGamePriceLocatorString));
+        this.chosenGamePrice = priceLabel.getText(10000,600);
+    }
+
+
 
 }

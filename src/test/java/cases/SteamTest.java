@@ -22,6 +22,6 @@ public class SteamTest extends BaseTest {
         ActionsSteamForm actionsForm = new ActionsSteamForm();
         actionsForm.clickBtnSpecials();
         actionsForm.navigateMaxDiscountGame();
-        System.out.println("stop it");
+        System.out.println("stop it");//todo check correct discount values
     }
 }
