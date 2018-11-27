@@ -45,6 +45,10 @@ public class LanguageProperties {
         return getProperty("comboboxLanguage");
     }
 
+    public String getSeeAllSpecials(){
+        return getProperty("seeAllSpecials");
+    }
+
     public String getProperty(String key) {
         String labelOld = config.getString(key);
         String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));

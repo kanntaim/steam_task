@@ -1,5 +1,6 @@
 package cases;
 
+import forms.ActionsSteamForm;
 import forms.BaseSteamForm;
 import forms.MainSteamForm;
 import framework.utils.Properties;
@@ -18,6 +19,8 @@ public class SteamTest extends BaseTest {
         //form.navigateInstallSteam();
         //form.setLocale(new Locale("RU"));
         form.navigateSubmenu(MainSteamForm.MenuItems.GAMES, MainSteamForm.SubmenuItems.ACTIONS);
-        System.out.println("Wasted");
+        ActionsSteamForm actionsForm = new ActionsSteamForm();
+        actionsForm.clickBtnSpecials();
+        System.out.println("stop it");
     }
 }
