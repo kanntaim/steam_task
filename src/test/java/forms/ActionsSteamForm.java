@@ -6,6 +6,7 @@ import elements.LabelsList;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ActionsSteamForm extends MainSteamForm {
@@ -64,6 +65,13 @@ public class ActionsSteamForm extends MainSteamForm {
         this.chosenGameDiscount = chosenGameDiscount;
         Label priceLabel = new Label(By.xpath(chosenGamePriceLocatorString));
         this.chosenGamePrice = priceLabel.getText(10000, 600);
+    }
+
+    public List<String> getChosenGameParameters(){
+        List<String> parameters = new LinkedList<>();
+        parameters.add(chosenGameDiscount);
+        parameters.add(chosenGamePrice);
+        return parameters;
     }
 
 
