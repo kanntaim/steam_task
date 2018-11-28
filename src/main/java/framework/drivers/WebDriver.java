@@ -10,7 +10,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WebDriver {
 
@@ -35,14 +37,21 @@ public class WebDriver {
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "Chrome":
+                Map<String, Object> prefs = new HashMap<String, Object>();
+                prefs.put("download.default_directory",downloadDirNew);
+                prefs.put("safebrowsing.enabled",false);
+                prefs.put("download.prompt_for_download", "false");
+                prefs.put("profile.default_content_settings.popups", 0);
+                prefs.put("download.prompt_for_download", "false");
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setCapability("browser.download.folderList",2);
-                chromeOptions.setCapability("browser.download.dir", downloadDirNew);
-                chromeOptions.setCapability("browser.helperApps.neverAsk.saveToDisk",
-                        "application/octet-stream;");
-                chromeOptions.setCapability( "browser.download.manager.showWhenStarting", false );
-                chromeOptions.setCapability( "pdfjs.disabled", true);//todo delete if not needed
-                driver = new ChromeDriver();
+                chromeOptions.setExperimentalOption("prefs",prefs);
+                chromeOptions.addArguments("test-type");
+                chromeOptions.addArguments("disable-web-security");
+                chromeOptions.addArguments("allow-running-insecure-content");
+                chromeOptions.addArguments("safebrowsing-disable-download-protection");//FIXME delete?
+                chromeOptions.addArguments("reduce-security-for-testing");
+                chromeOptions.addArguments("safebrowsing-disable-extension-blacklist");
+                driver = new ChromeDriver(chromeOptions);
         }
     }
 
@@ -101,4 +110,6 @@ public class WebDriver {
     public org.openqa.selenium.WebDriver getDriver() {
         return driver;
     }
+
+    public void navigate(String url){driver.navigate().to(url);}
 }

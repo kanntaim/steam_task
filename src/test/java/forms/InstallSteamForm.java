@@ -1,20 +1,12 @@
 package forms;
 
 import elements.Button;
-import framework.drivers.WebDriver;
 import framework.utils.LanguageProperties;
+import framework.utils.Properties;
 import framework.utils.Waiter;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.time.Duration;
-import java.util.NoSuchElementException;
 
 public class InstallSteamForm extends BaseSteamForm {
 
@@ -30,7 +22,7 @@ public class InstallSteamForm extends BaseSteamForm {
 
     public void clickBtnInstallSteam() {
         setInstallSteam();
-        btnInstallSteam.click(10000,600);
+        btnInstallSteam.click(10000, 600);
     }
 
     private void waitForFileDownloaded(URL url) {
@@ -39,13 +31,25 @@ public class InstallSteamForm extends BaseSteamForm {
 
     public void downloadSteam() {
         clickBtnInstallSteam();
+        Properties properties = Properties.getInstance();
+        String browser = properties.getBrowserName()
+        if (browser.equals("Chrome")) {
+            navigateDownload();//fixme what to do
+            ChromeDownloadsForm chromeDownloadsForm = new ChromeDownloadsForm();
+            chromeDownloadsForm.acceptDownload();
+
+        }
         URL url = null;
         try {
             url = new URL(btnInstallSteam.getHref());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        Waiter.waitFileToDownload(url);
+        Waiter.waitFileToDownload(url);//todo create directory
         System.out.println("nope");
+    }
+
+    private void navigateDownload() {
+        navigate("chrome://downloads/");
     }
 }
