@@ -45,7 +45,7 @@ public class MainSteamForm extends BaseSteamForm {
         String menuItemId = "pulldown_desktop";//FIXME
         String submenuItemTemplate = "//a[contains(text(),\"%s\")]";
 
-        return new Menu(menuLocator,null,submenuItemTemplate);
+        return new Menu(menuLocator,submenuItemTemplate);
     }
 
     public void navigateSubmenu(MenuItems item, SubmenuItems submenuItem) {

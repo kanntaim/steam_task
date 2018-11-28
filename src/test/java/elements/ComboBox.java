@@ -17,10 +17,6 @@ public class ComboBox extends BaseElement {
 
     }
 
-    public ComboBox(String xpath, String itemsXpath) {
-        this(By.xpath(xpath), By.xpath(itemsXpath));
-    }
-
     public List<Button> getItems() {
         Waiter.waitElement(itemsLocator, 10000, 600);
         WebDriver driver = WebDriver.getInstance();

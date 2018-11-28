@@ -15,7 +15,7 @@ public class InstallSteamForm extends BaseSteamForm {
         btnInstallSteam = new Button(buttonXpath);
     }
 
-    public void clickBtnInstallSteam() {
+    private void clickBtnInstallSteam() {
         setInstallSteam();
         btnInstallSteam.click(10000, 600);
     }

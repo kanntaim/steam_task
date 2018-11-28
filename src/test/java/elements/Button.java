@@ -14,7 +14,7 @@ public class Button extends BaseElement {
         this(By.xpath(xpath));
     }
 
-    public Button(WebElement element){
+    Button(WebElement element){
         super(element);
     }
 }

@@ -65,7 +65,7 @@ public class SteamTest extends BaseTest {
                 MalformedURLException e) {
             e.printStackTrace();
         }
-        Waiter.waitFileToDownload(url);//todo create directory
+        Waiter.waitFileToDownload(url);
         return true;
     }
 }
