@@ -67,6 +67,8 @@ public class BaseSteamForm extends BaseForm{
             }
         }
         buttonList.get(i).click(10000, 600);
+        LanguageProperties languageProperties = LanguageProperties.getInstance();
+        languageProperties.setConfig(locale);
     }
 
 

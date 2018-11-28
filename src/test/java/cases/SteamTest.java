@@ -19,7 +19,7 @@ public class SteamTest extends BaseTest {
         Properties properties = Properties.getInstance();
         Locale language = properties.getLanguage();
         MainSteamForm form = new MainSteamForm();
-        form.setLocale(new Locale("RU"));
+        form.setLocale(language);
         form.navigateInstallSteam();
         InstallSteamForm installSteamForm = new InstallSteamForm();
         String downloadLink = installSteamForm.downloadSteam();

@@ -1,6 +1,7 @@
 package cases;
 
 import framework.drivers.WebDriver;
+import framework.utils.LanguageProperties;
 import framework.utils.Properties;
 import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
@@ -10,6 +11,7 @@ import org.testng.annotations.BeforeTest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
@@ -27,6 +29,8 @@ public abstract class BaseTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        LanguageProperties languageProperties = LanguageProperties.getInstance();
+        languageProperties.setConfig(new Locale("ru"));
         System.setProperty(properties.getWebdriverName(), properties.getWebdriverPath());
         driver = WebDriver.getInstance();
         driver.get(properties.getUrl());
@@ -36,7 +40,7 @@ public abstract class BaseTest {
 
     public abstract void test();
 
-    public void assertTrue(boolean statement) {
+    void assertTrue(boolean statement) {
         Assert.assertTrue(statement);
     }
 
