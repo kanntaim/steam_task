@@ -30,7 +30,7 @@ public class LanguageProperties {
     public void setConfig(Locale locale) {
         try {
             String path = System.getProperty("localePropertiesDirectoryPath");
-            path = "C:\\Users\\Имя\\IdeaProjects\\steam_task\\src\\resources\\locale";
+            path = "C:\\Users\\n.galeev\\IdeaProjects\\steam task\\src\\resources\\locale";
             File file = new File(path);
             URL[] urls = {file.toURI().toURL()};
             ClassLoader loader = new URLClassLoader(urls);

@@ -39,7 +39,7 @@ public class WebDriver {
             case "Chrome":
                 Map<String, Object> prefs = new HashMap<String, Object>();
                 prefs.put("download.default_directory",downloadDirNew);
-                prefs.put("safebrowsing.enabled",false);
+                prefs.put("safebrowsing.enabled",true);
                 prefs.put("download.prompt_for_download", "false");
                 prefs.put("profile.default_content_settings.popups", 0);
                 prefs.put("download.prompt_for_download", "false");
