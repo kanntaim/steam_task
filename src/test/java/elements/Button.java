@@ -17,5 +17,4 @@ public class Button extends BaseElement {
     public Button(WebElement element){
         super(element);
     }
-
 }

@@ -15,7 +15,7 @@ public abstract class BaseElement {
     public BaseElement(By locator) {
         this.locator = locator;
         driver = WebDriver.getInstance();
-        webElement = null;
+        webElement = driver.findElement(locator);
     }
     public BaseElement(WebElement element) {
         locator = null;
@@ -63,6 +63,10 @@ public abstract class BaseElement {
 
     public By getLocator() {
         return locator;
+    }
+
+    public String getHref(){
+        return webElement.getAttribute("href");
     }
 
 //    public RemoteWebElement getElement()

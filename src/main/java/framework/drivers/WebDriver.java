@@ -4,9 +4,11 @@ import framework.utils.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +22,26 @@ public class WebDriver {
         Properties properties = Properties.getInstance();
         String browserName = properties.getBrowserName();
         String downloadDir = properties.getBrowserDownloadDirectory();
-        FirefoxOptions options = new FirefoxOptions();
-        options.addPreference("browser.download.dir", downloadDir);
-        options.addPreference("browser.helperApps.neverAsk.saveToDisk",
-                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;");
-        options.addPreference( "browser.download.manager.showWhenStarting", false );
-        options.addPreference( "pdfjs.disabled", true);
+        String downloadDirNew = new String(downloadDir.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
         switch (browserName) {
             case "Firefox":
-                driver = new FirefoxDriver(options);
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addPreference("browser.download.folderList",2);
+                firefoxOptions.addPreference("browser.download.dir", downloadDirNew);
+                firefoxOptions.addPreference("browser.helperApps.neverAsk.saveToDisk",
+                        "application/octet-stream;");
+                firefoxOptions.addPreference( "browser.download.manager.showWhenStarting", false );
+                firefoxOptions.addPreference( "pdfjs.disabled", true);
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "Chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setCapability("browser.download.folderList",2);
+                chromeOptions.setCapability("browser.download.dir", downloadDirNew);
+                chromeOptions.setCapability("browser.helperApps.neverAsk.saveToDisk",
+                        "application/octet-stream;");
+                chromeOptions.setCapability( "browser.download.manager.showWhenStarting", false );
+                chromeOptions.setCapability( "pdfjs.disabled", true);//todo delete if not needed
                 driver = new ChromeDriver();
         }
     }

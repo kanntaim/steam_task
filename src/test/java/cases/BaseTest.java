@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
@@ -18,7 +19,10 @@ public abstract class BaseTest {
     @BeforeTest
     public void setUp() {
         try {
-            FileUtils.cleanDirectory(new File(properties.getBrowserDownloadDirectory()));
+            Properties properties = Properties.getInstance();
+            String downloadDir = properties.getBrowserDownloadDirectory();
+            String downloadDirNew = new String(downloadDir.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+            FileUtils.cleanDirectory(new File(downloadDirNew));
         } catch (IOException e) {
             e.printStackTrace();
         }
