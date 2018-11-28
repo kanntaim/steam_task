@@ -36,10 +36,10 @@ public class Waiter {
     }
 
     public static void waitForFileDownloaded(File file) {
-        waitForFileDownloaded(file,defaultTimeoutMillis,defaultPollingEveryMillis);
+        waitForFileDownloaded(file, defaultTimeoutMillis, defaultPollingEveryMillis);
     }
 
-    public static void waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis){
+    public static void waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis) {
         WebDriver driver = WebDriver.getInstance();
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), timeoutMillis, pollingEveryMillis);
         wait.until(driver1 -> file.exists());
