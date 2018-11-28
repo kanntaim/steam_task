@@ -7,6 +7,26 @@ import org.openqa.selenium.By;
 public class MainSteamForm extends BaseSteamForm {
     private final By menuLocator = By.className("store_nav");
     private final String submenuItemTemplate = "//a[contains(text(),\"%s\")]";
+    private Menu menuStoreNav;
+
+    public MainSteamForm() {
+        isFormOpen(menuLocator);
+        setMenuStoreNav();
+    }
+
+    private void setMenuStoreNav() {
+        menuStoreNav = new Menu(menuLocator, submenuItemTemplate);
+    }
+
+    public void navigateSubmenu(MenuItems item, SubmenuItems submenuItem) {
+        String menuItemId = item.getId();
+        String submenuItemText = submenuItem.getText();
+        By menuItemLocator = By.id(menuItemId);
+        By submenuItemLocator = By.xpath(String.format(menuStoreNav.getSubmenuItemTemplate(), submenuItemText));
+
+        menuStoreNav.mouseOver(menuItemLocator, 10000, 600);
+        menuStoreNav.jsClick(submenuItemLocator, 10000, 600);
+    }
 
     public enum MenuItems {
         YOUR_STORE("foryou_tab"),
@@ -39,21 +59,5 @@ public class MainSteamForm extends BaseSteamForm {
         String getText() {
             return this.text;
         }
-    }
-
-    private Menu menuStoreNav = setMenuStoreNav();
-
-    private Menu setMenuStoreNav() {
-        return new Menu(menuLocator, submenuItemTemplate);
-    }
-
-    public void navigateSubmenu(MenuItems item, SubmenuItems submenuItem) {
-        String menuItemId = item.getId();
-        String submenuItemText = submenuItem.getText();
-        By menuItemLocator = By.id(menuItemId);
-        By submenuItemLocator = By.xpath(String.format(menuStoreNav.getSubmenuItemTemplate(), submenuItemText));
-
-        menuStoreNav.mouseOver(menuItemLocator, 10000, 600);
-        menuStoreNav.jsClick(submenuItemLocator, 10000, 600);
     }
 }

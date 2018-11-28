@@ -5,16 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Waiter {
+    public static WebElement waitElement(By locator) {
+        return waitElement(locator, 10000, 600);
+    }
+
     public static WebElement waitElement(By locator, long timeoutMillis, long pollingEveryMillis) {
         WebDriver driver = WebDriver.getInstance();
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -24,24 +26,15 @@ public class Waiter {
         return wait.until(driver1 -> driver1.findElement(locator));
     }
 
-    public static List<WebElement> waitElements(By locator, long timeoutMillis, long pollingEveryMillis) {
+    public static List<WebElement> waitElements(By locator) {
         WebDriver driver = WebDriver.getInstance();
         return driver.findElements(locator);
     }
 
-    public static void waitFileToDownload(URL url) {
-        URLConnection conn;
-        int code = 0;
-        while (code != 200) {
-            try {
-                conn = url.openConnection();
-                if (conn instanceof HttpURLConnection) {
-                    code = ((HttpURLConnection) conn).getResponseCode();
-                    ((HttpURLConnection) conn).disconnect();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public static void waitForFileDownloaded(File file) {
+        WebDriver driver = WebDriver.getInstance();
+        WebDriverWait wait = new WebDriverWait(driver.getDriver(), 10000, 600);
+        wait.until(driver1 -> file.exists());
+
     }
 }

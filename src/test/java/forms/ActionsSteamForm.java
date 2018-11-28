@@ -34,7 +34,7 @@ public class ActionsSteamForm extends MainSteamForm {
 
     public void clickBtnSpecials() {
         setBtnSpecials();
-        btnSpecials.click(10000, 600);
+        btnSpecials.click();
     }
 
     public MainSteamForm navigateMaxDiscountGame() {
@@ -45,12 +45,12 @@ public class ActionsSteamForm extends MainSteamForm {
         Button maxDiscountGame = new Button(maxDiscountGameLocator);
         String priceLocatorString = String.format(priceTemplate, maxDiscount);
         setChosenGameParameters(maxDiscount, priceLocatorString);
-        maxDiscountGame.click(10000, 600);
+        maxDiscountGame.click();
 
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getViewPage();
         By buttonLocator = By.xpath(String.format(itemTemplate, buttonText));
-        if (isFormOpen(buttonLocator, 10000, 600)) {
+        if (isFormOpen(buttonLocator)) {
             return new AgeCheckForm();
         } else {
             return new GameForm();

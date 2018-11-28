@@ -17,13 +17,12 @@ public class InstallSteamForm extends BaseSteamForm {
 
     private void clickBtnInstallSteam() {
         setInstallSteam();
-        btnInstallSteam.click(10000, 600);
+        btnInstallSteam.click();
     }
 
 
-    public String downloadSteam() {
+    public void downloadSteam() {
         clickBtnInstallSteam();
-        return btnInstallSteam.getHref();
     }
 
 }

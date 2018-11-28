@@ -7,8 +7,6 @@ import framework.utils.Waiter;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -38,34 +36,15 @@ public class SteamTest extends BaseTest {
 
         form.navigateInstallSteam();
         InstallSteamForm installSteamForm = new InstallSteamForm();
-        String downloadLink = installSteamForm.downloadSteam();
-        assertTrue(isFileCreated(downloadLink));
+        installSteamForm.downloadSteam();
+        assertTrue(isFileCreated());
     }
 
-    private boolean isFileCreated(String href) {
-
+    private boolean isFileCreated() {
         Properties properties = Properties.getInstance();
-        String browser = properties.getBrowserName();
         String path = properties.getBrowserDownloadDirectory();
-        if (browser.equals("Chrome")) {
-            File downloadedFile = new File(path + "/" + "SteamSetup.exe");
-            while (!downloadedFile.exists()) {
-                try {
-                    Thread.sleep(600);//todo remove thread sleep or not
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        URL url = null;
-        try {
-            url = new URL(href);
-        } catch (
-                MalformedURLException e) {
-            e.printStackTrace();
-        }
-        Waiter.waitFileToDownload(url);
+        File downloadedFile = new File(path + "/" + "SteamSetup.exe");
+        Waiter.waitForFileDownloaded(downloadedFile);
         return true;
     }
 }

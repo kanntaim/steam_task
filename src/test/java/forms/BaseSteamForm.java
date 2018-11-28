@@ -14,11 +14,7 @@ public class BaseSteamForm extends BaseForm {
     private final By cmbLanguageItemsLocator = By.xpath("//div[@id = \"language_dropdown\"]/descendant::a");
 
     private Button btnInstallSteam;
-    private ComboBox cmbLanguage = setCmbLanguage();
-
-    public BaseSteamForm() {
-
-    }
+    private ComboBox cmbLanguage;
 
     private void setBtnInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
@@ -27,13 +23,13 @@ public class BaseSteamForm extends BaseForm {
         btnInstallSteam = new Button(buttonXpath);
     }
 
-    private ComboBox setCmbLanguage() {
-        return new ComboBox(cmbLanguageLocator, cmbLanguageItemsLocator);
+    private void setCmbLanguage() {
+        cmbLanguage = new ComboBox(cmbLanguageLocator, cmbLanguageItemsLocator);
     }
 
     public void navigateInstallSteam() {
         setBtnInstallSteam();
-        btnInstallSteam.click(10000, 600);
+        btnInstallSteam.click();
     }
 
     public void setLocale(Locale locale) {
@@ -47,20 +43,20 @@ public class BaseSteamForm extends BaseForm {
                 language = "English";
                 break;
             default:
-                System.out.println("Wrong locale language");
                 return;
         }
-        cmbLanguage.click(10000, 600);
+        setCmbLanguage();
+        cmbLanguage.click();
         List<Button> buttonList = cmbLanguage.getItems();
         int i = 0;
-        while (!buttonList.get(i).getText(10000, 600).startsWith(language)) {
+        while (!buttonList.get(i).getText().startsWith(language)) {
             i++;
             if (i == buttonList.size()) {
-                cmbLanguage.click(10000, 600);
+                cmbLanguage.click();
                 return;
             }
         }
-        buttonList.get(i).click(10000, 600);
+        buttonList.get(i).click();
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         languageProperties.setConfig(locale);
     }

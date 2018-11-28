@@ -11,17 +11,18 @@ public class GameForm extends MainSteamForm {
     private Label lblDiscountPercent;
     private Label lblDiscountPrice;
 
-    public boolean isPricesEqual(List<String> actionPageParameters){
+    public boolean isPricesEqual(List<String> actionPageParameters) {
         setLblDiscountPrice();
         setLblDiscountPercent();
-        return lblDiscountPercent.getText(10000,600).replace('%', ' ').trim().equals(actionPageParameters.get(0))
-                && lblDiscountPrice.getText(10000,600).equals(actionPageParameters.get(1));
+        return lblDiscountPercent.getText(10000, 600).replace('%', ' ').trim().equals(actionPageParameters.get(0))
+                && lblDiscountPrice.getText(10000, 600).equals(actionPageParameters.get(1));
     }
 
-    private void setLblDiscountPercent(){
+    private void setLblDiscountPercent() {
         lblDiscountPercent = new Label(discountPercentLocator);
     }
-    private void setLblDiscountPrice(){
+
+    private void setLblDiscountPrice() {
         lblDiscountPrice = new Label(discountPriceLocator);
     }
 }

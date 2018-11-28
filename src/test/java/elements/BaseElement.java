@@ -30,9 +30,25 @@ public abstract class BaseElement {
         webElement.click();
     }
 
+    public void click() {
+        if (locator != null) {
+            Waiter.waitElement(locator);
+            webElement = driver.findElement(locator);
+        }
+        webElement.click();
+    }
+
     public String getText(long timeout, long pollingRate) {
         if (locator != null) {
             Waiter.waitElement(locator, timeout, pollingRate);
+            webElement = driver.findElement(locator);
+        }
+        return webElement.getText();
+    }
+
+    public String getText() {
+        if (locator != null) {
+            Waiter.waitElement(locator);
             webElement = driver.findElement(locator);
         }
         return webElement.getText();
