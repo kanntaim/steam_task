@@ -56,11 +56,7 @@ public class SteamTest extends BaseTest {
                 }
             }
         }
-        //            navigateDownload();//fixme what to do
-//            ChromeDownloadsForm chromeDownloadsForm = new ChromeDownloadsForm();
-//            chromeDownloadsForm.acceptDownload();
-//
-//        }
+
         URL url = null;
         try {
             url = new URL(href);

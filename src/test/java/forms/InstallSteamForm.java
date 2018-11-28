@@ -2,11 +2,6 @@ package forms;
 
 import elements.Button;
 import framework.utils.LanguageProperties;
-import framework.utils.Properties;
-import framework.utils.Waiter;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class InstallSteamForm extends BaseSteamForm {
 
@@ -25,16 +20,10 @@ public class InstallSteamForm extends BaseSteamForm {
         btnInstallSteam.click(10000, 600);
     }
 
-    private void waitForFileDownloaded(URL url) {
-
-    }
 
     public String downloadSteam() {
         clickBtnInstallSteam();
         return btnInstallSteam.getHref();
     }
 
-    private void navigateDownload() {
-        navigate("chrome://downloads/");
-    }
 }

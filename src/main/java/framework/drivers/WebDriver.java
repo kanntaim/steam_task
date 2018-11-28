@@ -28,20 +28,20 @@ public class WebDriver {
         switch (browserName) {
             case "Firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addPreference("browser.download.folderList",2);
+                firefoxOptions.addPreference("browser.download.folderList", 2);
                 firefoxOptions.addPreference("browser.download.dir", downloadDirNew);
                 firefoxOptions.addPreference("browser.helperApps.neverAsk.saveToDisk",
                         "application/octet-stream;");
-                firefoxOptions.addPreference( "browser.download.manager.showWhenStarting", false );
-                firefoxOptions.addPreference( "pdfjs.disabled", true);
+                firefoxOptions.addPreference("browser.download.manager.showWhenStarting", false);
+                firefoxOptions.addPreference("pdfjs.disabled", true);
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "Chrome":
                 Map<String, Object> prefs = new HashMap<String, Object>();
-                prefs.put("download.default_directory",downloadDirNew);
-                prefs.put("safebrowsing.enabled",true);
+                prefs.put("download.default_directory", downloadDirNew);
+                prefs.put("safebrowsing.enabled", true);
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setExperimentalOption("prefs",prefs);
+                chromeOptions.setExperimentalOption("prefs", prefs);
                 driver = new ChromeDriver(chromeOptions);
         }
     }
@@ -101,6 +101,4 @@ public class WebDriver {
     public org.openqa.selenium.WebDriver getDriver() {
         return driver;
     }
-
-    public void navigate(String url){driver.navigate().to(url);}
 }

@@ -30,7 +30,6 @@ public class LanguageProperties {
     public void setConfig(Locale locale) {
         try {
             String path = System.getProperty("localePropertiesDirectoryPath");
-            path = "C:\\Users\\n.galeev\\IdeaProjects\\steam task\\src\\resources\\locale";
             File file = new File(path);
             URL[] urls = {file.toURI().toURL()};
             ClassLoader loader = new URLClassLoader(urls);
@@ -44,10 +43,6 @@ public class LanguageProperties {
         return getProperty("buttonInstall");
     }
 
-    public String getComboboxLanguage() {
-        return getProperty("comboboxLanguage");
-    }
-
     public String getSeeAllSpecials() {
         return getProperty("seeAllSpecials");
     }
@@ -58,7 +53,6 @@ public class LanguageProperties {
 
     public String getProperty(String key) {
         String labelOld = config.getString(key);
-        String labelNew = new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
-        return labelNew;
+        return new String(labelOld.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
     }
 }
