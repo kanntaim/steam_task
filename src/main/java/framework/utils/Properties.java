@@ -55,4 +55,6 @@ public class Properties {
         return new Locale(config.getString("language"));
     }
 
+    public String getAgeCheckBirthDate(){return config.getString("ageCheckBirthDate");}
+
 }
