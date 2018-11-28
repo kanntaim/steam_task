@@ -40,17 +40,8 @@ public class WebDriver {
                 Map<String, Object> prefs = new HashMap<String, Object>();
                 prefs.put("download.default_directory",downloadDirNew);
                 prefs.put("safebrowsing.enabled",true);
-                prefs.put("download.prompt_for_download", "false");
-                prefs.put("profile.default_content_settings.popups", 0);
-                prefs.put("download.prompt_for_download", "false");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("prefs",prefs);
-                chromeOptions.addArguments("test-type");
-                chromeOptions.addArguments("disable-web-security");
-                chromeOptions.addArguments("allow-running-insecure-content");
-                chromeOptions.addArguments("safebrowsing-disable-download-protection");//FIXME delete?
-                chromeOptions.addArguments("reduce-security-for-testing");
-                chromeOptions.addArguments("safebrowsing-disable-extension-blacklist");
                 driver = new ChromeDriver(chromeOptions);
         }
     }
