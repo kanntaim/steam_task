@@ -10,6 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ActionsSteamForm extends MainSteamForm {
+    private final By discountsLocator = By.xpath("//span[contains(text(),\"%\")]");
+    private final String btnSpecialsTemplate = "//span[contains(text(),\"%s\")]//ancestor::a";
+    private final String maxDiscountGameTemplate = "//span[contains(text(),\"%s\")]/ancestor::a";
+    private final String priceTemplate = "//span[contains(text(),\"%s\")]/ancestor::a//descendant::strike/../..";
+    private final String itemTemplate = "//span[contains(text(),\"%s\")]";
+
     private Button btnSpecials;
     private LabelsList discounts;
     private String chosenGameDiscount;
@@ -18,12 +24,12 @@ public class ActionsSteamForm extends MainSteamForm {
     private void setBtnSpecials() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getSeeAllSpecials();
-        String buttonXpath = String.format("//span[contains(text(),\"%s\")]//ancestor::a", buttonText);
+        String buttonXpath = String.format(btnSpecialsTemplate, buttonText);
         btnSpecials = new Button(buttonXpath);
     }
 
     private void setDiscounts() {
-        discounts = new LabelsList(By.xpath("//span[contains(text(),\"%\")]"));
+        discounts = new LabelsList(discountsLocator);
     }
 
     public void clickBtnSpecials() {
@@ -34,19 +40,19 @@ public class ActionsSteamForm extends MainSteamForm {
     public MainSteamForm navigateMaxDiscountGame() {
         setDiscounts();
         String maxDiscount = getMaxDiscount();
-        By maxDiscountGameLocator = By.xpath(String.format("//span[contains(text(),\"%s\")]/ancestor::a", maxDiscount));
+        By maxDiscountGameLocator = By.xpath(String.format(maxDiscountGameTemplate, maxDiscount));
 
         Button maxDiscountGame = new Button(maxDiscountGameLocator);
-        String priceLocatorString = String.format("//span[contains(text(),\"%s\")]/ancestor::a//descendant::strike/../..", maxDiscount);
+        String priceLocatorString = String.format(priceTemplate, maxDiscount);
         setChosenGameParameters(maxDiscount, priceLocatorString);
         maxDiscountGame.click(10000, 600);
 
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getViewPage();
-        By buttonLocator = By.xpath(String.format("//span[contains(text(),\"%s\")]", buttonText));
+        By buttonLocator = By.xpath(String.format(itemTemplate, buttonText));
         if (isFormOpen(buttonLocator, 10000, 600)) {
             return new AgeCheckForm();
-        } else{
+        } else {
             return new GameForm();
         }
     }
@@ -67,7 +73,7 @@ public class ActionsSteamForm extends MainSteamForm {
         this.chosenGamePrice = priceLabel.getText(10000, 600);
     }
 
-    public List<String> getChosenGameParameters(){
+    public List<String> getChosenGameParameters() {
         List<String> parameters = new LinkedList<>();
         parameters.add(chosenGameDiscount);
         parameters.add(chosenGamePrice);

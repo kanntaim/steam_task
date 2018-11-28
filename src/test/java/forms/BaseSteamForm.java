@@ -2,7 +2,6 @@ package forms;
 
 import elements.Button;
 import elements.ComboBox;
-import elements.Menu;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 
@@ -10,7 +9,9 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class BaseSteamForm extends BaseForm{
+public class BaseSteamForm extends BaseForm {
+    private final By cmbLanguageLocator = By.id("language_pulldown");
+    private final By cmbLanguageItemsLocator = By.xpath("//div[@id = \"language_dropdown\"]/descendant::a");
 
     private Button btnInstallSteam;
     private ComboBox cmbLanguage = setCmbLanguage();
@@ -27,9 +28,7 @@ public class BaseSteamForm extends BaseForm{
     }
 
     private ComboBox setCmbLanguage() {
-        String comboboxId = "language_pulldown";
-        String itemsXpath = "//div[@id = \"language_dropdown\"]/descendant::a";
-        return new ComboBox(By.id(comboboxId), By.xpath(itemsXpath));
+        return new ComboBox(cmbLanguageLocator, cmbLanguageItemsLocator);
     }
 
     public void navigateInstallSteam() {
@@ -37,11 +36,6 @@ public class BaseSteamForm extends BaseForm{
         btnInstallSteam.click(10000, 600);
     }
 
-    public void clickCmbLanguage() {
-        cmbLanguage.click(10000, 600);
-    }
-
-//TODO forms list
     public void setLocale(Locale locale) {
         String localeLanguage = locale.getLanguage();
         String language;

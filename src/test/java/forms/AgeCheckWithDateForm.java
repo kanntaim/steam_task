@@ -8,13 +8,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class AgeCheckWithDateForm extends AgeCheckForm{
+class AgeCheckWithDateForm extends AgeCheckForm{
 
     ComboBox day = new ComboBox(By.id("ageDay"),By.xpath("//select[@id=\"ageDay\"]/option"));
     ComboBox month = new ComboBox(By.id("ageMonth"),By.xpath("//select[@id=\"ageMonth\"]/option"));
     ComboBox year = new ComboBox(By.id("ageYear"),By.xpath("//select[@id=\"ageYear\"]/option"));
 
-    public void setDate(Calendar date){
+    void setDate(Calendar date){
         day.click(10000, 600);
         List<Button> daysList = day.getItems();
         int i = 0;

@@ -4,9 +4,9 @@ import elements.Button;
 import framework.utils.LanguageProperties;
 
 public class InstallSteamForm extends BaseSteamForm {
+    private final String installSteamTemplate = "//span[contains(text(),\"%s\")]/ancestor::a";
 
     private Button btnInstallSteam;
-    private final String installSteamTemplate = "//span[contains(text(),\"%s\")]/ancestor::a";
 
     private void setInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
