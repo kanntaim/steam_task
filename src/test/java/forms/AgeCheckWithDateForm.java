@@ -10,13 +10,13 @@ import java.util.Locale;
 
 class AgeCheckWithDateForm extends AgeCheckForm{
 
-    ComboBox day = new ComboBox(By.id("ageDay"),By.xpath("//select[@id=\"ageDay\"]/option"));
-    ComboBox month = new ComboBox(By.id("ageMonth"),By.xpath("//select[@id=\"ageMonth\"]/option"));
-    ComboBox year = new ComboBox(By.id("ageYear"),By.xpath("//select[@id=\"ageYear\"]/option"));
+    private ComboBox cmbDay = new ComboBox(By.id("ageDay"),By.xpath("//select[@id=\"ageDay\"]/option"));
+    private ComboBox cmbMonth = new ComboBox(By.id("ageMonth"),By.xpath("//select[@id=\"ageMonth\"]/option"));
+    private ComboBox cmbYear = new ComboBox(By.id("ageYear"),By.xpath("//select[@id=\"ageYear\"]/option"));
 
     void setDate(Calendar date){
-        day.click(10000, 600);
-        List<Button> daysList = day.getItems();
+        cmbDay.click(10000, 600);
+        List<Button> daysList = cmbDay.getItems();
         int i = 0;
         while (Integer.parseInt(daysList.get(i).getText(10000, 600)) != (date.get(Calendar.DAY_OF_MONTH))) {
             i++;
@@ -25,9 +25,9 @@ class AgeCheckWithDateForm extends AgeCheckForm{
             }
         }
         daysList.get(i).click(10000, 600);
-        month.click(10000, 600);
+        cmbMonth.click(10000, 600);
 
-        List<Button> monthsList = month.getItems();
+        List<Button> monthsList = cmbMonth.getItems();
         i = 0;
         while (!monthsList.get(i).getText(10000, 600).equals(date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH))) {
             i++;
@@ -37,8 +37,8 @@ class AgeCheckWithDateForm extends AgeCheckForm{
         }
         monthsList.get(i).click(10000, 600);
 
-        year.click(10000, 600);
-        List<Button> yearsList = year.getItems();
+        cmbYear.click(10000, 600);
+        List<Button> yearsList = cmbYear.getItems();
         i = 0;
         while (Integer.parseInt(yearsList.get(i).getText(10000, 600)) != (date.get(Calendar.YEAR))) {
             i++;

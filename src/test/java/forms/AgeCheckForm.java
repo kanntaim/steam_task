@@ -11,7 +11,7 @@ public class AgeCheckForm extends MainSteamForm {
     private final By ageDayLocator= By.xpath("//select[@id=\"ageDay\"]/option");
     private final String viewPageTemplate = "//span[contains(text(),\"%s\")]";
 
-    private Button btnViewPage; //todo make all Buttons etc. to btnName etc.
+    private Button btnViewPage;
 
     AgeCheckForm(){
 
