@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 import java.util.List;
 
 public class GameForm extends MainSteamForm {
-    private By discountPercentLocator = By.className("discount_pct");
-    private By discountPriceLocator = By.className("discount_prices");
+    private final By discountPercentLocator = By.className("discount_pct");
+    private final By discountPriceLocator = By.className("discount_prices");
     private Label lblDiscountPercent;
     private Label lblDiscountPrice;
 

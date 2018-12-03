@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 
 public abstract class BaseElement {
     private WebElement webElement;
-    private WebDriver driver;
-    private By locator;
+    private final WebDriver driver;
+    private final By locator;
 
     BaseElement(By locator) {
         this.locator = locator;

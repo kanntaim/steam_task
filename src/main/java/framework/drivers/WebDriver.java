@@ -37,7 +37,7 @@ public class WebDriver {
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "Chrome":
-                Map<String, Object> prefs = new HashMap<String, Object>();
+                Map<String, Object> prefs = new HashMap<>();
                 prefs.put("download.default_directory", downloadDirNew);
                 prefs.put("safebrowsing.enabled", true);
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -53,7 +53,7 @@ public class WebDriver {
         return ourInstance;
     }
 
-    public void switchTab(int number) {
+    private void switchTab(int number) {
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         if (number >= 0) {
             driver.switchTo().window(tabs.get(number));

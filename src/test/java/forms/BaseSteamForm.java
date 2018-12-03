@@ -34,31 +34,19 @@ public class BaseSteamForm extends BaseForm {
     }
 
     public void setLocale(Locale locale) {
-        String localeLanguage = locale.getLanguage();
-        String language;
-        switch (localeLanguage) {
-            case "ru":
-                language = "Русский";
-                break;
-            case "en":
-                language = "English";
-                break;
-            default:
-                return;
-        }
+        LanguageProperties languageProperties = LanguageProperties.getInstance();
+        languageProperties.setConfig(locale);
+        String language = languageProperties.getLanguageComboboxItem();
         setCmbLanguage();
         cmbLanguage.click();
         List<Button> buttonList = cmbLanguage.getItems();
         int i = 0;
         while (!buttonList.get(i).getText().startsWith(language)) {
-            i++;
-            if (i == buttonList.size()) {
+            if (++i == buttonList.size()) {
                 cmbLanguage.click();
                 return;
             }
         }
         buttonList.get(i).click();
-        LanguageProperties languageProperties = LanguageProperties.getInstance();
-        languageProperties.setConfig(locale);
     }
 }

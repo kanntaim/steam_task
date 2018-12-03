@@ -1,6 +1,8 @@
 package cases;
 
 import forms.*;
+import forms.form_enums.MenuItems;
+import forms.form_enums.SubmenuItems;
 import framework.utils.DateParser;
 import framework.utils.Properties;
 import framework.utils.Waiter;
@@ -21,7 +23,7 @@ public class SteamTest extends BaseTest {
         MainSteamForm form = new MainSteamForm();
         form.setLocale(language);
 
-        form.navigateSubmenu(MainSteamForm.MenuItems.GAMES, MainSteamForm.SubmenuItems.ACTIONS);
+        form.navigateSubmenu(MenuItems.GAMES, SubmenuItems.ACTIONS);
         ActionsSteamForm actionsForm = new ActionsSteamForm();
         actionsForm.clickBtnSpecials();
         MainSteamForm undefinedForm = actionsForm.navigateMaxDiscountGame();
@@ -41,10 +43,16 @@ public class SteamTest extends BaseTest {
     }
 
     private boolean isFileCreated() {
-        Properties properties = Properties.getInstance();
-        String path = properties.getBrowserDownloadDirectory();
-        File downloadedFile = new File(path + "/" + "SteamSetup.exe");
-        Waiter.waitForFileDownloaded(downloadedFile);
+        try {
+            Properties properties = Properties.getInstance();
+            String path = properties.getBrowserDownloadDirectory();
+            String fileName = properties.getDownloadedFileName();
+            File downloadedFile = new File(path + File.pathSeparator + fileName);
+            Waiter.waitForFileDownloaded(downloadedFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 }

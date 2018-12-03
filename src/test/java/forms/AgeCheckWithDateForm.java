@@ -10,9 +10,9 @@ import java.util.Locale;
 
 class AgeCheckWithDateForm extends AgeCheckForm {
 
-    private ComboBox cmbDay = new ComboBox(By.id("ageDay"), By.xpath("//select[@id=\"ageDay\"]/option"));
-    private ComboBox cmbMonth = new ComboBox(By.id("ageMonth"), By.xpath("//select[@id=\"ageMonth\"]/option"));
-    private ComboBox cmbYear = new ComboBox(By.id("ageYear"), By.xpath("//select[@id=\"ageYear\"]/option"));
+    private final ComboBox cmbDay = new ComboBox(By.id("ageDay"), By.xpath("//select[@id=\"ageDay\"]/option"));
+    private final ComboBox cmbMonth = new ComboBox(By.id("ageMonth"), By.xpath("//select[@id=\"ageMonth\"]/option"));
+    private final ComboBox cmbYear = new ComboBox(By.id("ageYear"), By.xpath("//select[@id=\"ageYear\"]/option"));
 
     void setDate(Calendar date) {
         cmbDay.click();

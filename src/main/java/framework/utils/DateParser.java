@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class DateParser {
-    public static Calendar parse(String date) {
+    public static void parse(String date) {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.mm.yyyy", Locale.ENGLISH);
         try {
@@ -14,6 +14,5 @@ public class DateParser {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return cal;
     }
 }

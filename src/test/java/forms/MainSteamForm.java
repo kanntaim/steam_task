@@ -1,7 +1,8 @@
 package forms;
 
 import elements.Menu;
-import framework.utils.LanguageProperties;
+import forms.form_enums.MenuItems;
+import forms.form_enums.SubmenuItems;
 import org.openqa.selenium.By;
 
 public class MainSteamForm extends BaseSteamForm {
@@ -26,38 +27,5 @@ public class MainSteamForm extends BaseSteamForm {
 
         menuStoreNav.mouseOver(menuItemLocator);
         menuStoreNav.jsClick(submenuItemLocator);
-    }
-
-    public enum MenuItems {
-        YOUR_STORE("foryou_tab"),
-        GAMES("genre_tab"),
-        SOFTWARE("software_tab"),
-        HARDWARE("hardware_tab"),
-        VIDEOS("videos_tab");
-
-        private final String id;
-
-        MenuItems(String id) {
-            this.id = id;
-        }
-
-        String getId() {
-            return this.id;
-        }
-    }
-
-    public enum SubmenuItems {
-        ACTIONS("menuGamesActions");
-
-        private final String text;
-
-        SubmenuItems(String propertyKey) {
-            LanguageProperties languageProperties = LanguageProperties.getInstance();
-            this.text = languageProperties.getProperty(propertyKey);
-        }
-
-        String getText() {
-            return this.text;
-        }
     }
 }

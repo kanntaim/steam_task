@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComboBox extends BaseElement {
-    private By itemsLocator;
+    private final By itemsLocator;
 
     public ComboBox(By locator, By itemsLocator) {
         super(locator);

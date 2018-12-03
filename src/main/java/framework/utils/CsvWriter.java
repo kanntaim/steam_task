@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class CsvWriter {
+class CsvWriter {
     private static final String filePath = System.getProperty("csvFileToSave");
 
     public static boolean createFile(List<String> itemsToWrite) {

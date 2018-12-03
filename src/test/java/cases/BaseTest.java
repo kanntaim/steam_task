@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
 
-    private Properties properties = Properties.getInstance();
+    private final Properties properties = Properties.getInstance();
     private WebDriver driver;
 
     @BeforeTest

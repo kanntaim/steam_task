@@ -50,6 +50,9 @@ public class Properties {
     public String getBrowserDownloadDirectory() {
         return config.getString("downloadDir");
     }
+    public String getDownloadedFileName(){
+        return config.getString("downloadedFileName");
+    }
 
     public Locale getLanguage() {
         return new Locale(config.getString("language"));

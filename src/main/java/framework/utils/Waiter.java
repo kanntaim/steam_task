@@ -17,17 +17,17 @@ public class Waiter {
     private static final long defaultPollingEveryMillis = 600;
 
 
-    public static WebElement waitElement(By locator) {
-        return waitElement(locator, defaultTimeoutMillis, defaultPollingEveryMillis);
+    public static void waitElement(By locator) {
+        waitElement(locator, defaultTimeoutMillis, defaultPollingEveryMillis);
     }
 
-    public static WebElement waitElement(By locator, long timeoutMillis, long pollingEveryMillis) {
+    public static void waitElement(By locator, long timeoutMillis, long pollingEveryMillis) {
         WebDriver driver = WebDriver.getInstance();
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofMillis(timeoutMillis))
                 .pollingEvery(Duration.ofMillis(pollingEveryMillis))
                 .ignoring(NoSuchElementException.class);
-        return wait.until(driver1 -> driver1.findElement(locator));
+        wait.until(driver1 -> driver1.findElement(locator));
     }
 
     public static List<WebElement> waitElements(By locator) {
@@ -39,7 +39,7 @@ public class Waiter {
         waitForFileDownloaded(file, defaultTimeoutMillis, defaultPollingEveryMillis);
     }
 
-    public static void waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis) {
+    private static void waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis) {
         WebDriver driver = WebDriver.getInstance();
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), timeoutMillis, pollingEveryMillis);
         wait.until(driver1 -> file.exists());
