@@ -38,6 +38,7 @@ public class BaseSteamForm extends BaseForm {
         languageProperties.setConfig(locale);
         String language = languageProperties.getLanguageComboboxItem();
         setCmbLanguage();
+        System.out.println(cmbLanguage);
         cmbLanguage.click();
         List<Button> buttonList = cmbLanguage.getItems();
         int i = 0;

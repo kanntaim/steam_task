@@ -15,12 +15,12 @@ import java.util.Locale;
 
 public class SteamTest extends BaseTest {
 
-    @Test
     @Override
     public void test() {
         Properties properties = Properties.getInstance();
         Locale language = properties.getLanguage();
         MainSteamForm form = new MainSteamForm();
+        System.out.println(form);
         form.setLocale(language);
 
         form.navigateSubmenu(MenuItems.GAMES, SubmenuItems.ACTIONS);

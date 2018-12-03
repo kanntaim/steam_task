@@ -62,4 +62,12 @@ public class Properties {
         return config.getString("ageCheckBirthDate");
     }
 
+    public String getDefaultTimeoutMillis(){
+        return config.getString("defaultTimeoutMillis");
+    }
+
+    public String getDefaultPollingRateMillis(){
+        return config.getString("defaultPollingRateMillis");
+    }
+
 }

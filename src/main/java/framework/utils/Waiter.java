@@ -13,12 +13,15 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Waiter {
-    private static final long defaultTimeoutMillis = 10000;
-    private static final long defaultPollingEveryMillis = 600;
+    private static long defaultTimeoutMillis = 10000;
+    private static long defaultPollingRateMillis = 600;
 
 
     public static void waitElement(By locator) {
-        waitElement(locator, defaultTimeoutMillis, defaultPollingEveryMillis);
+        Properties properties = Properties.getInstance();
+        defaultPollingRateMillis = Long.getLong(properties.getDefaultPollingRateMillis());
+        defaultTimeoutMillis = Long.getLong(properties.getDefaultTimeoutMillis());
+        waitElement(locator, defaultTimeoutMillis, defaultPollingRateMillis);
     }
 
     public static void waitElement(By locator, long timeoutMillis, long pollingEveryMillis) {
@@ -36,12 +39,12 @@ public class Waiter {
     }
 
     public static void waitForFileDownloaded(File file) {
-        waitForFileDownloaded(file, defaultTimeoutMillis, defaultPollingEveryMillis);
+        waitForFileDownloaded(file, defaultTimeoutMillis, defaultPollingRateMillis);
     }
 
     private static void waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis) {
         WebDriver driver = WebDriver.getInstance();
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), timeoutMillis, pollingEveryMillis);
-        wait.until(driver1 -> file.exists());
+        wait.until(driver1 -> false);
     }
 }
