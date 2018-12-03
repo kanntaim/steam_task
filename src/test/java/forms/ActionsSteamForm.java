@@ -59,7 +59,7 @@ public class ActionsSteamForm extends MainSteamForm {
 
 
     private String getMaxDiscount() {
-        List<String> discountsTextList = discounts.getTextList(10000, 600);//FIXME default t/o + polling rt
+        List<String> discountsTextList = discounts.getTextList();//FIXME default t/o + polling rt
         Integer maxDiscount = 0;
         for (String discountText : discountsTextList) {
             Integer discount = Integer.parseInt(discountText.replace('%', ' ').trim());

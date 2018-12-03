@@ -21,6 +21,16 @@ public class BaseElementList {
 
     public List<String> getTextList(long timeout, long pollingRate) {
         Waiter.waitElement(locator, timeout, pollingRate);
+        return returnTextList();
+    }
+
+    public List<String> getTextList() {
+        Waiter.waitElement(locator);
+        return returnTextList();
+
+    }
+
+    public List<String> returnTextList(){
         List<WebElement> elementList = driver.findElements(locator);
         List<String> textList = new LinkedList<>();
         for (WebElement element : elementList) {
@@ -29,16 +39,17 @@ public class BaseElementList {
         return textList;
     }
 
-
     public void mouseOver(By mouseOverLocator, long timeout, long pollingRate) {
         Waiter.waitElement(mouseOverLocator, timeout, pollingRate);
-        WebElement mouseOverElement = driver.findElement(mouseOverLocator);
-        Actions actions = new Actions(driver.getDriver());
-        actions.moveToElement(mouseOverElement).perform();
+        doMouseOver(mouseOverLocator);
     }
 
     public void mouseOver(By mouseOverLocator){
         Waiter.waitElement(mouseOverLocator);
+        doMouseOver(mouseOverLocator);
+    }
+
+    public void doMouseOver(By mouseOverLocator){
         WebElement mouseOverElement = driver.findElement(mouseOverLocator);
         Actions actions = new Actions(driver.getDriver());
         actions.moveToElement(mouseOverElement).perform();
@@ -46,13 +57,15 @@ public class BaseElementList {
 
     public void jsClick(By locator, long timeout, long pollingRate) {
         Waiter.waitElement(locator, timeout, pollingRate);
-        WebElement clickElement = driver.findElement(locator);
-        JavascriptExecutor executor = (JavascriptExecutor) driver.getDriver();
-        executor.executeScript("arguments[0].click();", clickElement);
+        doJsClick(locator);
     }
 
     public void jsClick(By locator) {
         Waiter.waitElement(locator);
+        doJsClick(locator);
+    }
+
+    public void doJsClick(By locator){
         WebElement clickElement = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor) driver.getDriver();
         executor.executeScript("arguments[0].click();", clickElement);
