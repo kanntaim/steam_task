@@ -37,8 +37,22 @@ public class BaseElementList {
         actions.moveToElement(mouseOverElement).perform();
     }
 
+    public void mouseOver(By mouseOverLocator){
+        Waiter.waitElement(mouseOverLocator);
+        WebElement mouseOverElement = driver.findElement(mouseOverLocator);
+        Actions actions = new Actions(driver.getDriver());
+        actions.moveToElement(mouseOverElement).perform();
+    }
+
     public void jsClick(By locator, long timeout, long pollingRate) {
         Waiter.waitElement(locator, timeout, pollingRate);
+        WebElement clickElement = driver.findElement(locator);
+        JavascriptExecutor executor = (JavascriptExecutor) driver.getDriver();
+        executor.executeScript("arguments[0].click();", clickElement);
+    }
+
+    public void jsClick(By locator) {
+        Waiter.waitElement(locator);
         WebElement clickElement = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor) driver.getDriver();
         executor.executeScript("arguments[0].click();", clickElement);
