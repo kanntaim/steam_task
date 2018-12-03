@@ -49,14 +49,8 @@ public abstract class BaseElement {
     public String getText() {
         if (locator != null) {
             Waiter.waitElement(locator);
-            webElement = driver.findElement(locator);
+            webElement = driver.findElement(locator);//todo remove code repeating if possible
         }
         return webElement.getText();
     }
-
-
-    public String getHref() {
-        return webElement.getAttribute("href");
-    }
-
 }
