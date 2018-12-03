@@ -19,9 +19,9 @@ public class BaseSteamForm extends BaseForm {
 
     private void setBtnInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
-        String buttonText = languageProperties.getButtonInstall();
-        String buttonXpath = String.format(installButtonTemplate, buttonText);//todo ask if name is bad one
-        btnInstallSteam = new Button(buttonXpath);
+        String buttonInstallSteamText = languageProperties.getButtonInstall();
+        String buttonInstallSteamXpath = String.format(installButtonTemplate, buttonInstallSteamText);//todo ask if name is bad one
+        btnInstallSteam = new Button(buttonInstallSteamXpath);
     }
 
     private void setCmbLanguage() {

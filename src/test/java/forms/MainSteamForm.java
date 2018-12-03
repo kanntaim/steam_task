@@ -26,6 +26,6 @@ public class MainSteamForm extends BaseSteamForm {
         By submenuItemLocator = By.xpath(String.format(menuStoreNav.getSubmenuItemTemplate(), submenuItemText));
 
         menuStoreNav.mouseOver(menuItemLocator);
-        menuStoreNav.jsClick(submenuItemLocator);
+        menuStoreNav.jsClick(submenuItemLocator);//fixme nope
     }
 }

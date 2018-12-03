@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,8 +38,11 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
-
-    public abstract void test();//todo ask about this
+    @Test
+    private void runTest(){
+        test();
+    }
+    public abstract void test();
 
     void assertTrue(boolean statement) {
         Assert.assertTrue(statement);
