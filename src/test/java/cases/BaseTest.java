@@ -38,7 +38,7 @@ public abstract class BaseTest {
 
     }
 
-    public abstract void test();
+    public abstract void test();//todo ask about this
 
     void assertTrue(boolean statement) {
         Assert.assertTrue(statement);

@@ -59,7 +59,7 @@ public class ActionsSteamForm extends MainSteamForm {
 
 
     private String getMaxDiscount() {
-        List<String> discountsTextList = discounts.getTextList();//FIXME default t/o + polling rt
+        List<String> discountsTextList = discounts.getTextList();
         Integer maxDiscount = 0;
         for (String discountText : discountsTextList) {
             Integer discount = Integer.parseInt(discountText.replace('%', ' ').trim());
@@ -71,7 +71,7 @@ public class ActionsSteamForm extends MainSteamForm {
     private void setChosenGameParameters(String chosenGameDiscount, String chosenGamePriceLocatorString) {
         this.chosenGameDiscount = chosenGameDiscount;
         Label priceLabel = new Label(By.xpath(chosenGamePriceLocatorString));
-        this.chosenGamePrice = priceLabel.getText(10000, 600);
+        this.chosenGamePrice = priceLabel.getText();
     }
 
     public List<String> getChosenGameParameters() {

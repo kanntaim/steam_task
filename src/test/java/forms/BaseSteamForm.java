@@ -12,6 +12,7 @@ import java.util.Locale;
 public class BaseSteamForm extends BaseForm {
     private final By cmbLanguageLocator = By.id("language_pulldown");
     private final By cmbLanguageItemsLocator = By.xpath("//div[@id = \"language_dropdown\"]/descendant::a");
+    private final String installButtonTemplate = "//a[contains(text(),\"%s\")]";
 
     private Button btnInstallSteam;
     private ComboBox cmbLanguage;
@@ -19,7 +20,7 @@ public class BaseSteamForm extends BaseForm {
     private void setBtnInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonText = languageProperties.getButtonInstall();
-        String buttonXpath = String.format("//a[contains(text(),\"%s\")]", buttonText);
+        String buttonXpath = String.format(installButtonTemplate, buttonText);//todo ask if name is bad one
         btnInstallSteam = new Button(buttonXpath);
     }
 
@@ -60,6 +61,4 @@ public class BaseSteamForm extends BaseForm {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         languageProperties.setConfig(locale);
     }
-
-
 }
