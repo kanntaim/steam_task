@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -55,14 +55,17 @@
 
     <profiles>
         <profile>
-            <id>if-suite-exists</id>
+            <id>default</id>
             <activation>
-                <property>
-                    <name>!env.SUITES</name>
-                </property>
+                <activeByDefault>
+                    true
+                </activeByDefault>
             </activation>
             <properties>
                 <resources.suites>global.resources.suites</resources.suites>
+                <propertiesFilePath>src/main/resources/.properties</propertiesFilePath>
+                <localePropertiesDirectoryPath>src/main/resources/locale</localePropertiesDirectoryPath>
+                <suiteXmlFile>src/test/resources/suites/ParentSuite.xml</suiteXmlFile>
             </properties>
             <build>
                 <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -85,13 +88,11 @@
                             <version>2.20.1</version>
                             <configuration>
                                 <systemPropertyVariables>
-                                    <!--suppress UnresolvedMavenProperty -->
-                                    <propertyFilePath>${propertiesFilePath}</propertyFilePath>
-                                    <!--suppress UnresolvedMavenProperty -->
-                                    <localePropertiesDirectoryPath>${localePropertiesDirectoryPath}</localePropertiesDirectoryPath>
+                                    <propertiesFilePath>${propertiesFilePath}</propertiesFilePath>
+                                    <localePropertiesDirectoryPath>${localePropertiesDirectoryPath}
+                                    </localePropertiesDirectoryPath>
                                 </systemPropertyVariables>
                                 <suiteXmlFiles>
-                                    <!--suppress UnresolvedMavenProperty -->
                                     <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                                 </suiteXmlFiles>
                             </configuration>

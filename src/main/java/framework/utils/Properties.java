@@ -4,6 +4,8 @@ import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Locale;
 
 public class Properties {
@@ -47,10 +49,24 @@ public class Properties {
         return config.getString("browserName");
     }
 
-    public String getBrowserDownloadDirectory() {
-        return config.getString("downloadDir");
+    public File getBrowserDownloadDirectory() {
+        String downloadDirPath = config.getString("downloadDir");
+        String downloadDirNew = new String(downloadDirPath.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+        File downloadDir = null;
+        try {
+            downloadDir = new File(new File(downloadDirNew).getCanonicalPath());
+            if (!downloadDir.exists()) {
+                if (!new File(downloadDir.getCanonicalPath()).mkdirs()) {
+                    throw new IOException("couldn't create directory");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return downloadDir;
     }
-    public String getDownloadedFileName(){
+
+    public String getDownloadedFileName() {
         return config.getString("downloadedFileName");
     }
 
@@ -62,11 +78,11 @@ public class Properties {
         return config.getString("ageCheckBirthDate");
     }
 
-    public String getDefaultTimeoutMillis(){
+    public String getDefaultTimeoutMillis() {
         return config.getString("defaultTimeoutMillis");
     }
 
-    public String getDefaultPollingRateMillis(){
+    public String getDefaultPollingRateMillis() {
         return config.getString("defaultPollingRateMillis");
     }
 

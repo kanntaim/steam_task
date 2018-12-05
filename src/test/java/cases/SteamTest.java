@@ -6,9 +6,9 @@ import forms.form_enums.SubmenuItems;
 import framework.utils.DateParser;
 import framework.utils.Properties;
 import framework.utils.Waiter;
-import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -42,16 +42,16 @@ public class SteamTest extends BaseTest {
     }
 
     private boolean isFileCreated() {
+        Properties properties = Properties.getInstance();
+        String path;
         try {
-            Properties properties = Properties.getInstance();
-            String path = properties.getBrowserDownloadDirectory();
-            String fileName = properties.getDownloadedFileName();
-            File downloadedFile = new File(path + File.pathSeparator + fileName);
-            Waiter.waitForFileDownloaded(downloadedFile);
-        } catch (Exception e) {
+            path = properties.getBrowserDownloadDirectory().getCanonicalPath();
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
+        String fileName = properties.getDownloadedFileName();
+        File downloadedFile = new File(path + File.pathSeparator + fileName);
+        return Waiter.waitForFileDownloaded(downloadedFile);
     }
 }

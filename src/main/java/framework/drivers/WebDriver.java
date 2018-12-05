@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +24,13 @@ public class WebDriver {
         ourInstance = this;
         Properties properties = Properties.getInstance();
         String browserName = properties.getBrowserName();
-        String downloadDir = properties.getBrowserDownloadDirectory();
-        String downloadDirNew = new String(downloadDir.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+        String downloadDirNew = null;
+        try {
+            String downloadDirPath = properties.getBrowserDownloadDirectory().getCanonicalPath();
+            downloadDirNew = new String(downloadDirPath.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+        }
         switch (browserName) {
             case "Firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();

@@ -30,7 +30,7 @@ public class BaseElementList {
 
     }
 
-    private List<String> returnTextList(){
+    private List<String> returnTextList() {
         List<WebElement> elementList = driver.findElements(locator);
         List<String> textList = new LinkedList<>();
         for (WebElement element : elementList) {
@@ -44,12 +44,12 @@ public class BaseElementList {
         doMouseOver(mouseOverLocator);
     }
 
-    public void mouseOver(By mouseOverLocator){
+    public void mouseOver(By mouseOverLocator) {
         Waiter.waitElement(mouseOverLocator);
         doMouseOver(mouseOverLocator);
     }
 
-    private void doMouseOver(By mouseOverLocator){
+    private void doMouseOver(By mouseOverLocator) {
         WebElement mouseOverElement = driver.findElement(mouseOverLocator);
         Actions actions = new Actions(driver.getDriver());
         actions.moveToElement(mouseOverElement).perform();
@@ -65,7 +65,7 @@ public class BaseElementList {
         doJsClick(locator);
     }
 
-    private void doJsClick(By locator){
+    private void doJsClick(By locator) {
         WebElement clickElement = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor) driver.getDriver();
         executor.executeScript("arguments[0].click();", clickElement);

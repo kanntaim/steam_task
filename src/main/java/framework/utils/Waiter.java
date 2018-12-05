@@ -13,14 +13,19 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Waiter {
-    private static long defaultTimeoutMillis;
-    private static long defaultPollingRateMillis;
+    private static long defaultTimeoutMillis = 0;
+    private static long defaultPollingRateMillis = 0;
 
-
-    public static void waitElement(By locator) {
+    private static void setTimings() {
         Properties properties = Properties.getInstance();
         defaultPollingRateMillis = Long.parseLong(properties.getDefaultPollingRateMillis());
         defaultTimeoutMillis = Long.parseLong(properties.getDefaultTimeoutMillis());
+    }
+
+    public static void waitElement(By locator) {
+        if (defaultTimeoutMillis == 0) {
+            setTimings();
+        }
         waitElement(locator, defaultTimeoutMillis, defaultPollingRateMillis);
     }
 
@@ -38,13 +43,17 @@ public class Waiter {
         return driver.findElements(locator);
     }
 
-    public static void waitForFileDownloaded(File file) {
-        waitForFileDownloaded(file, defaultTimeoutMillis, defaultPollingRateMillis);
+    public static boolean waitForFileDownloaded(File file) {
+        if (defaultTimeoutMillis == 0) {
+            setTimings();
+        }
+        return waitForFileDownloaded(file, defaultTimeoutMillis, defaultPollingRateMillis);
     }
 
-    private static void waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis) {
+    private static boolean waitForFileDownloaded(File file, long timeoutMillis, long pollingEveryMillis) {
         WebDriver driver = WebDriver.getInstance();
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), timeoutMillis, pollingEveryMillis);
-        wait.until(driver1 -> false);
+        wait.until(driver1 -> file.exists());
+        return file.exists();
     }
 }

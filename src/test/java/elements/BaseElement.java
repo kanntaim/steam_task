@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public abstract class BaseElement {
-    private WebElement webElement;
     private final WebDriver driver;
     private final By locator;
+    private WebElement webElement;
 
     BaseElement(By locator) {
         this.locator = locator;

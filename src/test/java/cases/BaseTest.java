@@ -11,29 +11,21 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
 
-    private final Properties properties = Properties.getInstance();
+    private Properties properties = Properties.getInstance();
     private WebDriver driver;
 
     @BeforeTest
     public void setUp() {
+        properties = Properties.getInstance();
+        File downloadDir = properties.getBrowserDownloadDirectory();
         try {
-            Properties properties = Properties.getInstance();
-            String downloadDirPath = properties.getBrowserDownloadDirectory();
-            String downloadDirNew = new String(downloadDirPath.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
-            File downloadDir = new File(new File(downloadDirNew).getCanonicalPath());
-            if(!downloadDir.exists()) {
-                if(!new File(downloadDir.getCanonicalPath()).mkdirs()){
-                    throw new IOException("couldn't create directory");
-                }
-            }
             FileUtils.cleanDirectory(downloadDir);
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         LanguageProperties languageProperties = LanguageProperties.getInstance();
@@ -44,10 +36,12 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
+
     @Test
-    private void runTest(){
+    private void runTest() {
         test();
     }
+
     public abstract void test();
 
     void assertTrue(boolean statement) {
