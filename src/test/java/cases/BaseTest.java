@@ -28,8 +28,6 @@ public abstract class BaseTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LanguageProperties languageProperties = LanguageProperties.getInstance();
-        languageProperties.setConfig(new Locale("ru"));
         System.setProperty(properties.getWebdriverName(), properties.getWebdriverPath());
         driver = WebDriver.getInstance();
         driver.get(properties.getUrl());
