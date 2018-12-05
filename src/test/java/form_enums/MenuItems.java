@@ -1,4 +1,4 @@
-package forms.form_enums;
+package form_enums;
 
 public enum MenuItems {
     YOUR_STORE("foryou_tab"),

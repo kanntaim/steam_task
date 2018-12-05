@@ -1,7 +1,7 @@
 package forms;
 
 
-import elements.Button;
+import framework.elements.Button;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 

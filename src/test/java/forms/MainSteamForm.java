@@ -1,8 +1,8 @@
 package forms;
 
-import elements.Menu;
-import forms.form_enums.MenuItems;
-import forms.form_enums.SubmenuItems;
+import form_enums.MenuItems;
+import form_enums.SubmenuItems;
+import framework.elements.Menu;
 import org.openqa.selenium.By;
 
 public class MainSteamForm extends BaseSteamForm {

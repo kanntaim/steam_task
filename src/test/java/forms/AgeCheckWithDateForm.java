@@ -1,7 +1,7 @@
 package forms;
 
-import elements.Button;
-import elements.ComboBox;
+import framework.elements.Button;
+import framework.elements.ComboBox;
 import org.openqa.selenium.By;
 
 import java.util.Calendar;

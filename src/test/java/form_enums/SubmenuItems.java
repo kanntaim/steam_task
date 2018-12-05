@@ -1,4 +1,4 @@
-package forms.form_enums;
+package form_enums;
 
 import framework.utils.LanguageProperties;
 

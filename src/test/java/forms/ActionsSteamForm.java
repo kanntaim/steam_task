@@ -1,8 +1,8 @@
 package forms;
 
-import elements.Button;
-import elements.Label;
-import elements.LabelsList;
+import framework.elements.Button;
+import framework.elements.Label;
+import framework.elements.LabelsList;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 

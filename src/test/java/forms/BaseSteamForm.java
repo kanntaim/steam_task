@@ -1,7 +1,8 @@
 package forms;
 
-import elements.Button;
-import elements.ComboBox;
+import framework.BaseForm;
+import framework.elements.Button;
+import framework.elements.ComboBox;
 import framework.utils.LanguageProperties;
 import org.openqa.selenium.By;
 

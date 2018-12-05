@@ -1,6 +1,6 @@
 package forms;
 
-import elements.Button;
+import framework.elements.Button;
 import framework.utils.LanguageProperties;
 
 public class InstallSteamForm extends BaseSteamForm {

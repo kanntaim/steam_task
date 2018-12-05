@@ -1,4 +1,4 @@
-package cases;
+package framework;
 
 import framework.drivers.WebDriver;
 import framework.utils.Properties;
@@ -40,7 +40,7 @@ public abstract class BaseTest {
 
     protected abstract void test();
 
-    void assertTrue(boolean statement) {
+    protected void assertTrue(boolean statement) {
         Assert.assertTrue(statement);
     }
 

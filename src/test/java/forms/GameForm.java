@@ -1,6 +1,6 @@
 package forms;
 
-import elements.Label;
+import framework.elements.Label;
 import org.openqa.selenium.By;
 
 import java.util.List;

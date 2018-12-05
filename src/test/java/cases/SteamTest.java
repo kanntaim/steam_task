@@ -1,8 +1,9 @@
 package cases;
 
+import form_enums.MenuItems;
+import form_enums.SubmenuItems;
 import forms.*;
-import forms.form_enums.MenuItems;
-import forms.form_enums.SubmenuItems;
+import framework.BaseTest;
 import framework.utils.DateParser;
 import framework.utils.Properties;
 import framework.utils.Waiter;

@@ -1,4 +1,4 @@
-package elements;
+package framework.elements;
 
 import framework.drivers.WebDriver;
 import framework.utils.Waiter;
