@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Waiter {
-    private static long defaultTimeoutMillis = 10000;
-    private static long defaultPollingRateMillis = 600;
+    private static long defaultTimeoutMillis;
+    private static long defaultPollingRateMillis;
 
 
     public static void waitElement(By locator) {
         Properties properties = Properties.getInstance();
-        defaultPollingRateMillis = Long.getLong(properties.getDefaultPollingRateMillis());
-        defaultTimeoutMillis = Long.getLong(properties.getDefaultTimeoutMillis());
+        defaultPollingRateMillis = Long.parseLong(properties.getDefaultPollingRateMillis());
+        defaultTimeoutMillis = Long.parseLong(properties.getDefaultTimeoutMillis());
         waitElement(locator, defaultTimeoutMillis, defaultPollingRateMillis);
     }
 

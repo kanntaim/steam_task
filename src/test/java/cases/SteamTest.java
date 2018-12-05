@@ -20,7 +20,6 @@ public class SteamTest extends BaseTest {
         Properties properties = Properties.getInstance();
         Locale language = properties.getLanguage();
         MainSteamForm form = new MainSteamForm();
-        System.out.println(form);
         form.setLocale(language);
 
         form.navigateSubmenu(MenuItems.GAMES, SubmenuItems.ACTIONS);
