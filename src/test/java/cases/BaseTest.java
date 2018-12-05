@@ -42,7 +42,7 @@ public abstract class BaseTest {
         test();
     }
 
-    public abstract void test();
+    protected abstract void test();
 
     void assertTrue(boolean statement) {
         Assert.assertTrue(statement);
