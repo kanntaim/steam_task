@@ -1,7 +1,6 @@
 package cases;
 
 import framework.drivers.WebDriver;
-import framework.utils.LanguageProperties;
 import framework.utils.Properties;
 import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
@@ -11,7 +10,6 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
