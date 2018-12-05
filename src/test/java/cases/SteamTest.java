@@ -51,7 +51,7 @@ public class SteamTest extends BaseTest {
             return false;
         }
         String fileName = properties.getDownloadedFileName();
-        File downloadedFile = new File(path + File.pathSeparator + fileName);
+        File downloadedFile = new File(path + File.separator + fileName);
         return Waiter.waitForFileDownloaded(downloadedFile);
     }
 }

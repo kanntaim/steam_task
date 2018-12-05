@@ -13,6 +13,8 @@ public class LanguageProperties {
 
     private static LanguageProperties ourInstance;
 
+    private final String defaultLocalePropertiesPath = "src/main/resources/locale";
+
     private ResourceBundle config;
 
     private LanguageProperties() {
@@ -30,6 +32,9 @@ public class LanguageProperties {
     public void setConfig(Locale locale) {
         try {
             String path = System.getProperty("localePropertiesDirectoryPath");
+            if (path == null) {
+                path = defaultLocalePropertiesPath;
+            }
             File file = new File(path);
             URL[] urls = {file.toURI().toURL()};
             ClassLoader loader = new URLClassLoader(urls);

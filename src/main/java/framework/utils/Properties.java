@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 import java.util.Locale;
 
 public class Properties {
+    private static final String defaultPropertiesFilePath = "src/main/resources/.properties";
     private static Properties ourInstance = null;
     private Configuration config;
 
@@ -18,8 +19,10 @@ public class Properties {
         Configurations configs = new Configurations();
         try {
             String propertiesPath = System.getProperty("propertiesFilePath");
+            if (propertiesPath == null) {
+                propertiesPath = defaultPropertiesFilePath;
+            }
             File propertiesFile = new File(propertiesPath);
-            System.out.println(propertiesFile.isFile());
             config = configs.properties(propertiesFile);
         } catch (Throwable cex) {
             cex.printStackTrace();
