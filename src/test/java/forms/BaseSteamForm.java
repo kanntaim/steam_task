@@ -20,7 +20,7 @@ public class BaseSteamForm extends BaseForm {
     private void setBtnInstallSteam() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
         String buttonInstallSteamText = languageProperties.getButtonInstall();
-        String buttonInstallSteamXpath = String.format(installButtonTemplate, buttonInstallSteamText);//todo ask if name is bad one
+        String buttonInstallSteamXpath = String.format(installButtonTemplate, buttonInstallSteamText);
         btnInstallSteam = new Button(buttonInstallSteamXpath);
     }
 

@@ -49,7 +49,7 @@ public abstract class BaseElement {
     public String getText() {
         if (locator != null) {
             Waiter.waitElement(locator);
-            webElement = driver.findElement(locator);//todo remove code repeating if possible
+            webElement = driver.findElement(locator);
         }
         return webElement.getText();
     }
