@@ -66,6 +66,7 @@
                 <propertiesFilePath>src/main/resources/.properties</propertiesFilePath>
                 <localePropertiesDirectoryPath>src/main/resources/locale</localePropertiesDirectoryPath>
                 <suiteXmlFile>src/test/resources/suites/ParentSuite.xml</suiteXmlFile>
+                <maven.version>2.19.1</maven.version>
             </properties>
             <build>
                 <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -85,7 +86,7 @@
                         </plugin>
                         <plugin>
                             <artifactId>maven-surefire-plugin</artifactId>
-                            <version>2.20.1</version>
+                            <version>${maven.version}</version>
                             <configuration>
                                 <systemPropertyVariables>
                                     <propertiesFilePath>${propertiesFilePath}</propertiesFilePath>
@@ -103,11 +104,11 @@
                         </plugin>
                         <plugin>
                             <artifactId>maven-install-plugin</artifactId>
-                            <version>2.5.2</version>
+                            <version>${maven.version}</version>
                         </plugin>
                         <plugin>
                             <artifactId>maven-deploy-plugin</artifactId>
-                            <version>2.8.2</version>
+                            <version>${maven.version}</version>
                         </plugin>
                     </plugins>
                 </pluginManagement>
