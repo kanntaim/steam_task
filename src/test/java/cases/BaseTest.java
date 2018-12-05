@@ -24,10 +24,16 @@ public abstract class BaseTest {
     public void setUp() {
         try {
             Properties properties = Properties.getInstance();
-            String downloadDir = properties.getBrowserDownloadDirectory();
-            String downloadDirNew = new String(downloadDir.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
-            FileUtils.cleanDirectory(new File(downloadDirNew));
-        } catch (IOException e) {
+            String downloadDirPath = properties.getBrowserDownloadDirectory();
+            String downloadDirNew = new String(downloadDirPath.getBytes(Charset.forName("windows-1252")), Charset.forName("windows-1251"));
+            File downloadDir = new File(new File(downloadDirNew).getCanonicalPath());
+            if(!downloadDir.exists()) {
+                if(!new File(downloadDir.getCanonicalPath()).mkdirs()){
+                    throw new IOException("couldn't create directory");
+                }
+            }
+            FileUtils.cleanDirectory(downloadDir);
+        } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }
         LanguageProperties languageProperties = LanguageProperties.getInstance();

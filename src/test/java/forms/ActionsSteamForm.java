@@ -23,9 +23,9 @@ public class ActionsSteamForm extends MainSteamForm {
 
     private void setBtnSpecials() {
         LanguageProperties languageProperties = LanguageProperties.getInstance();
-        String buttonText = languageProperties.getSeeAllSpecials();
-        String buttonXpath = String.format(btnSpecialsTemplate, buttonText);
-        btnSpecials = new Button(buttonXpath);
+        String specialsButtonText = languageProperties.getSeeAllSpecials();
+        String specialsButtonXpath = String.format(btnSpecialsTemplate, specialsButtonText);
+        btnSpecials = new Button(specialsButtonXpath);
     }
 
     private void setDiscounts() {
